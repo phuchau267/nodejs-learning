@@ -1,0 +1,71 @@
+<div class="mt-4">
+    <div class="row">
+
+        {{#each courses}}
+        <div class="col-sm-6 col-lg-4">
+            <div class="card card-course-item">
+                <a href="/courses/{{this.slug}}">
+                    <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
+                </a>
+                <div class="card-body">
+                    <a href="/courses/{{this.slug}}">
+                        <h5 class="card-title">{{this.name}}</h5>
+                    </a>
+                    <p class="card-text">{{this.description}}</p>
+                    <a href="#" class="btn btn-primary">Mua khóa học</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{#if pages}}
+ {{#ifCond current '<=' pages}}
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    
+    <li class="page-item {{#ifCond ../current '==' 1}} disabled {{/ifCond}}">
+      <a class="page-link" href="?page=1">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {{#ifCond ../current '>' 3}}
+    <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+    {{/ifCond}}
+    {{#ifCond ../prevPage2 '>' 0}}
+    <li class="page-item"><a class="page-link" href="?page={{../prevPage2}}">{{../prevPage2}}</a></li>
+    {{/ifCond}}
+    {{#ifCond ../prevPage '>' 0}}
+    <li class="page-item"><a class="page-link" href="?page={{../prevPage}}">{{../prevPage}}</a></li>
+    {{/ifCond}}
+    <li class="page-item active "><a class="page-link" href="?page={{../current}}">{{../current}}</a></li>
+    {{#ifCond ../current '<' ../pages}}
+    <li class="page-item"><a class="page-link" href="?page={{../nextPage}}">{{../nextPage}}</a></li>
+    {{/ifCond}}
+    {{#ifCond ../nextPage '<' ../pages}}
+    <li class="page-item"><a class="page-link" href="?page={{sum ../nextPage 1}}">{{sum ../nextPage 1}}</a></li>
+    {{/ifCond}}
+    {{#ifCond ../current '<' (minus ../pages 2)}}
+    <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+    {{/ifCond}}
+    <li class="page-item {{#ifCond ../current '==' ../pages}} disabled {{/ifCond}}">
+      <a class="page-link" href="?page={{../pages}}">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <form action="" method="get">
+        <input type="text" name="page" required>
+        <button type="submit" class="btn btn-primary" >nhập số trang</button>
+      </form>
+      
+    </li>
+
+  </ul>
+</nav>
+{{else}}
+ <h1>ko co san pham</h1>
+ {{/ifCond}}
+ {{else}}
+ <h1>ko co san pham</h1>
+{{/if}}

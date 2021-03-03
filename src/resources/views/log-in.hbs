@@ -1,0 +1,23 @@
+<form action="/login" method="post">
+    {{#ifCond wrongAcc '==' true}}
+    <div class="alert alert-danger" role="alert">
+    tai khoan hoac mat khau sai
+    </div>
+    {{/ifCond}}
+    <input type="text" class="form-control {{#ifCond loginUsername '==' 0}} is-invalid {{/ifCond}} {{#ifCond wrongAcc '==' true}} is-invalid {{/ifCond}}" id="floatingInput" placeholder="name" name="username" {{#ifCond loginUsername '!=' 0}} value="{{../loginUsername}}" {{/ifCond}}>
+    <label for="floatingInput">name</label>
+    {{#ifCond loginUsername '==' 0}}
+    <div class="alert alert-danger" role="alert">
+    ban chua nhap tai khoan
+    </div>
+    {{/ifCond}}
+    
+    <input type="password" class="form-control {{#ifCond loginPassword '==' 0}} is-invalid {{/ifCond}} {{#ifCond wrongAcc '==' true}} is-invalid {{/ifCond}}" id="floatingPassword" placeholder="password" name="password" {{#ifCond loginPassword '!=' 0}} value="{{../loginPassword}}" {{/ifCond}}>
+    <label for="floatingPassword">password</label>
+    {{#ifCond loginPassword '==' 0}}
+    <div class="alert alert-danger" role="alert">
+    ban chua nhap mat khau
+    </div>
+    {{/ifCond}}
+    <button type="submit" class="btn btn-primary">dang nhap</button>
+</form>
