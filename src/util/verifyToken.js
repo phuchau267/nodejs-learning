@@ -8,7 +8,7 @@ class roleValidation {
         if (!token) return res.status(401).send('ban chua dang nhap')
 
         try {
-            const userID = jwt.verify(token, 'jwakldjwakljtuia' );
+            const userID = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET );
             const user = await User.findOne({_id: userID})
             if(user){
                 req.user = user;

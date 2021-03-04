@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-const Cookies = require('js-cookie');
+
 
 
 
@@ -140,7 +140,7 @@ class UserController {
                 const validPass = await bcrypt.compare(loginPassword, user.password)
                 if(validPass){
                     try {
-                        const token = jwt.sign({ _id: user.id},'jwakldjwakljtuia');
+                        const token = jwt.sign({ _id: user.id},process.env.ACCESS_TOKEN_SECRET);
                         res.cookie('token',token, {httpOnly: true, maxAge:24 * 60 * 60 * 1000});
                         res.redirect('/')
                     } catch (error) {
