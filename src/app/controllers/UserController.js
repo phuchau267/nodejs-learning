@@ -25,7 +25,7 @@ class UserController {
         let acceptEmail = false;
         let acceptUsername = false;
         let acceptPassword = false;
-        let acceptConfirmPass = false;
+        
         if(!hadEmail){
             hadEmail = 0
         }else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(hadEmail)){
