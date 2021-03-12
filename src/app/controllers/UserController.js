@@ -1,105 +1,92 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken')
+const passport = require('passport');
+
 
 
 
 
 
 class UserController {
-    signup(req,res) {
-        
-        res.render('sign-up');
+    // get /register
+    register(req,res) {
+        res.render('register');
     }
-
+    // post /register
     async createUser(req,res) {
-        
-        let hadUsername = req.body.username;
-        let hadPassword = req.body.password;
-        let hadConfirmPassword = req.body.ConfirmPassword;
-        let hadEmail = req.body.email;
+        let email = req.body.email;
+        let username = req.body.username;
+        let password = req.body.password;
+        let confirmPassword = req.body.confirmPassword;
         let notEmail = false;
-        let checkEmailExist = false;
-        let checkNameExist = false;
-        let checkConfirmPass = false;
-        let acceptEmail = false;
-        let acceptUsername = false;
-        let acceptPassword = false;
-        
-        if(!hadEmail){
-            hadEmail = 0
-        }else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(hadEmail)){
+        let acceptEmail = 0;
+        let acceptUsername = 0;
+        let acceptPassword = 0;
+        let acceptConfirmPassword = 0;
+
+        if(!email){
+            email = 0;
+        }else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
             notEmail = true
         }else{
-            var emailExist = await User.findOne({email: hadEmail})
+            const emailExist = await User.findOne({email: email});
             if(emailExist){
-                checkEmailExist = true
+                acceptEmail = 1;
+            }else{
+                acceptEmail = 2;
             }
         }
-        if(!hadUsername){
-            hadUsername = 0
-        }else{
-            var nameExist = await User.findOne({username: hadUsername})
+        if(!username){
+            username = 0;
+        }else if(username.length >6){
+            const nameExist = await User.findOne({username: username});
             if(nameExist){
-                checkNameExist = true
+                acceptUsername = 1;
+            }else{
+                acceptUsername = 2;
             }
-        }
-        if(!hadPassword){
-            hadPassword = 0
-        }
-        if(!hadConfirmPassword){
-            hadConfirmPassword = 0
-        }
-        if(hadPassword != 0 && hadConfirmPassword != 0){
-            if(hadPassword === hadConfirmPassword){
-                checkConfirmPass = true;
-            }
-        }
-        
-        
-        let usernameLength = hadUsername.length;
-        let passwordLength = hadPassword.length;
-
-        if(notEmail == false && checkEmailExist == false){
-            acceptEmail = true
-        }
-        if(hadUsername != 0 && usernameLength > 6 && checkNameExist == false){
-            acceptUsername = true
-        }
-        if(hadPassword != 0 && passwordLength > 6){
-            acceptPassword = true
-        }
-        
-        
-        if(hadUsername == 0 || hadPassword == 0 || hadConfirmPassword == 0 || usernameLength <= 6 || passwordLength <=6 || notEmail == true || hadEmail == 0 || checkEmailExist == true || checkNameExist == true || checkConfirmPass == false){
-            res.render('sign-up', {
-                notEmail,
-                hadEmail,
-                checkEmailExist,
-                acceptEmail,
-                hadUsername,
-                acceptUsername,
-                hadPassword,
-                acceptPassword,
-                hadConfirmPassword,
-                checkConfirmPass,
-                usernameLength,
-                passwordLength,
-                checkNameExist
-            })
-            
         }else{
-            
-            
-
-            const {email,username, password: plainTextPassword,role} = req.body;
+            acceptUsername = 3;
+        }
+        if(!password){
+            password = 0;
+        }else if(password.length >6){
+            acceptPassword = 2;
+        }else{
+            acceptPassword = 1;
+        }
+        if(!confirmPassword){
+            confirmPassword = 0;
+        }else if(confirmPassword.length >6){
+            if(password === confirmPassword){
+                acceptConfirmPassword = 2;
+            }else{
+                acceptConfirmPassword = 3;
+            }
+        }else{
+            acceptConfirmPassword = 1;
+        }
+        if(email == 0 || notEmail == true || acceptEmail == 1 || username == 0 || acceptUsername == 1 || acceptUsername == 3 || password == 0 || acceptPassword == 1 || confirmPassword == 0 || acceptConfirmPassword == 3 || acceptConfirmPassword == 1){
+            res.render('register',{
+                email,
+                username,
+                password,
+                confirmPassword,
+                notEmail,
+                acceptEmail,
+                acceptUsername,
+                acceptPassword,
+                acceptConfirmPassword,
+                
+            })
+        }else{
+            const {email,username, password: plainTextPassword} = req.body;
             const password = await bcrypt.hash(plainTextPassword, 10);
 
             const user = new User({
                 email,
                 username,
                 password,
-                role,
             })
                 try {
                     user.save();
@@ -107,66 +94,89 @@ class UserController {
                 } catch (err) {
                         res.status(400).send(err)
                 }
-            }
+        }
 
-
-
-        
-        
     }
-
+    
     // get /login
     login(req,res) {
-        res.render('log-in');
+        let loggedIn = req.user;
+        if(loggedIn){
+            return res.redirect('/')
+        }else{
+            res.render('log-in');
+        }
+        
     }
-
-    //post loginUser
-    async loginUser(req,res){
-        let userExist = 0;
-        let passExist = 0;
-        let loginUsername = req.body.username;
-        let loginPassword = req.body.password;
-        let wrongAcc = false;
-        if(!loginUsername){
-            loginUsername = 0
+    testUser(req, res){
+        let name = req.user
+        if(!name){
+            name = 0
+        }else{
+            name = req.user.username
         }
-        if(!loginPassword){
-            loginPassword = 0
+        res.render('test-user', {
+            name
+        })
+    }
+    loginBasic(req, res, next){
+        
+    }
+    async loginUser(req,res,next){
+        let username = req.body.username;
+        let password = req.body.password;
+        let wrongPassword = false;
+        let wrongUsername = false;
+        if(!username) {
+            username = 0
         }
-        if(loginUsername && loginPassword){
-            const user = await User.findOne({username: loginUsername})
+        if(!password){
+            password = 0
+        }
+        if(username && password){
+            const user = await User.findOne({username: username});
             if(user){
-                
-                const validPass = await bcrypt.compare(loginPassword, user.password)
-                if(validPass){
-                    try {
-                        const token = jwt.sign({ _id: user.id},process.env.ACCESS_TOKEN_SECRET);
-                        res.cookie('token',token, {httpOnly: true, maxAge:24 * 60 * 60 * 1000});
-                        res.redirect('/')
-                    } catch (error) {
-                        res.send(error)
-                    }
+                const validPassword = await bcrypt.compare(password, user.password)
+                if(validPassword){
+                    passport.authenticate('local', function(err, user, info) {
+                        if (err) { return next(err); }
+                        if (!user) { return res.redirect('/login'); }
+                        req.logIn(user, function(err) {
+                          if (err) { 
+                              return next(err); 
+                            }else{
+                                return res.redirect('/test-user')
+                            }
+                        });
+                      })(req, res, next);
                 }else{
-                    passExist = 2
+                    wrongPassword = true
                 }
             }else{
-                userExist = 2
+                wrongUsername = true
             }
         }
-        if(userExist == 2 || passExist == 2){
-            wrongAcc = true
+        if(username == 0 || password == 0 || wrongPassword == true || wrongUsername == true){
+            res.render('log-in', {
+                username,
+                password,
+                wrongPassword,
+                wrongUsername,
+
+            });
         }
-        
-        if(loginUsername == 0 || loginPassword == 0 || userExist == 2 || passExist == 2 || wrongAcc == true){
-            res.render('log-in',{
-                loginUsername,
-                loginPassword,
-                userExist,
-                passExist,
-                wrongAcc
-            })
+    }
+
+    logout(req, res, next){
+        req.session.destroy(function (err) {
+            res.redirect('/login'); //Inside a callback… bulletproof!
+          });
+    }
+    checkLogin(req, res, next){
+        if(req.isAuthenticated()){
+            return next()
         }
-        
+        res.redirect('/login')
     }
 }
 module.exports = new UserController();

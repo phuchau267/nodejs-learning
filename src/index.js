@@ -4,6 +4,9 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
 const cookieParser = require('cookie-parser');
+const passport = require('passport')
+const session = require('express-session');
+const flash = require('connect-flash');
 require('dotenv').config();
 
 const app = express();
@@ -24,9 +27,29 @@ app.use(
 );
 app.use(express.json());
 app.use(methodOverride('_method'));
+
+
 // http logger
 app.use(morgan('combined'));
+// passport things
 
+require('./util/passport')(passport);   
+
+app.use(session({
+    secret: 'ancucchothuiquat',
+    resave: false,
+    saveUninitialized: false,
+    
+    // cookie: { secure: true }
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// express-session
+
+
+app.use(flash());
 //  Template engine
 
 app.engine(

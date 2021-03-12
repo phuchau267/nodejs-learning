@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const CourseController = require('../app/controllers/CourseController');
-const roleValidation = require('../util/verifyToken');
+const UserController = require('../app/controllers/UserController');
 // route chinh' luon nam o duoi cung
 
 router.post('/store',CourseController.store);
@@ -19,7 +19,7 @@ router.patch('/:id/restore', CourseController.restore);
 router.delete('/:id', CourseController.destroy);
 router.delete('/:id/force', CourseController.forcedestroy);
 
-router.get('/', roleValidation.checkLogin, roleValidation.customer, CourseController.index);
+router.get('/',UserController.checkLogin, CourseController.index);
 
 
 

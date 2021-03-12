@@ -4,7 +4,7 @@ const { mongooseToObject } = require('../../util/mongoose');
 const shortid = require('shortid');
 const removeVietnameseTones = require('../../util/slug-setting');
 // class thi viet hoa chu cai dau
-const cookieParser = require('cookie-parser');
+
 
 
 class CourseController {

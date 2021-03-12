@@ -10,11 +10,13 @@ router.get('/search', siteController.search);
 
 router.get('/', siteController.index);
 
-router.get('/sign-up', UserController.signup);
-router.post('/sign-up', UserController.createUser);
+router.get('/register', UserController.register);
+router.post('/register', UserController.createUser);
 
 router.get('/login', UserController.login);
-router.post('/login', UserController.loginUser);
+router.post('/login',UserController.loginUser);
 
+router.get('/test-user', UserController.testUser);
 
+router.get('/logout', UserController.logout)
 module.exports = router;

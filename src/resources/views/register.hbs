@@ -1,0 +1,94 @@
+<form class="row g-3" action="/register" method="post">
+  <div class="col-md-4">
+    <label for="Email" class="form-label">Email</label>
+    <input type="text" class="form-control {{#ifCond acceptEmail '==' 2}} is-valid {{/ifCond}} {{#ifCond email '==' 0}} is-invalid {{/ifCond}} {{#ifCond notEmail '==' true}} is-invalid {{/ifCond}} {{#ifCond acceptEmail '==' 1}} is-invalid {{/ifCond}}" id="Email" name="email" {{#ifCond email '!=' 0}} value="{{../email}}" {{/ifCond}} >
+    {{#ifCond email '==' 0}}
+    <div class="invalid-feedback">
+      ban chua nhap email.
+    </div>
+    {{/ifCond}}
+    {{#ifCond notEmail '==' true}}
+    <div class="invalid-feedback">
+      truong nay phai la email.
+    </div>
+    {{/ifCond}}
+    {{#ifCond acceptEmail '==' 1}}
+    <div class="invalid-feedback">
+      email nay da co ng su dung.
+    </div>
+    {{/ifCond}}
+    {{#ifCond acceptEmail '==' 2}}
+    <div class="valid-feedback">
+      ban co the su dung email nay.
+    </div>
+    {{/ifCond}}
+  </div>
+  
+  <div class="col-md-4">
+    <label for="Username" class="form-label">Username</label>
+    <input type="text" class="form-control {{#ifCond acceptUsername '==' 2}} is-valid {{/ifCond}} {{#ifCond username '==' 0}} is-invalid {{/ifCond}} {{#ifCond acceptUsername '==' 1}} is-invalid {{/ifCond}} {{#ifCond acceptUsername '==' 3}} is-invalid {{/ifCond}}" id="Username" name="username" {{#ifCond username '!=' 0}} value="{{../username}}" {{/ifCond}} >
+    {{#ifCond username '==' 0}}
+    <div class="invalid-feedback">
+      ban chua nhap ten dang nhap.
+    </div>
+    {{/ifCond}}
+    {{#ifCond acceptUsername '==' 1}}
+    <div class="invalid-feedback">
+      ten dang nhap da co ng su dung.
+    </div>
+    {{/ifCond}}
+    {{#ifCond acceptUsername '==' 3}}
+    <div class="invalid-feedback">
+      ten dang nhap can toi thieu 7 ky tu.
+    </div>
+    {{/ifCond}}
+    {{#ifCond acceptUsername '==' 2}}
+    <div class="valid-feedback">
+      ban co the su dung ten dang nhap nay.
+    </div>
+    {{/ifCond}}
+  </div>
+
+  <div class="col-md-4">
+    <label for="Password" class="form-label">Password</label>
+    <input type="password" class="form-control {{#ifCond acceptPassword '==' 2}} is-valid {{/ifCond}} {{#ifCond password '==' 0}} is-invalid {{/ifCond}} {{#ifCond acceptPassword '==' 1}} is-invalid {{/ifCond}}" id="Password" name="password" {{#ifCond password '!=' 0}} value="{{../password}}" {{/ifCond}}>
+    {{#ifCond password '==' 0}}
+    <div class="invalid-feedback">
+      ban chua nhap mat khau.
+    </div>
+    {{/ifCond}}
+    {{#ifCond acceptPassword '==' 1}}
+    <div class="invalid-feedback">
+      mat khau can toi thieu 7 ki tu.
+    </div>
+    {{/ifCond}}
+    {{#ifCond acceptPassword '==' 2}}
+    <div class="valid-feedback">
+      ban co the su dung mat khau nay.
+    </div>
+    {{/ifCond}}
+  </div>
+
+  <div class="col-md-4">
+    <label for="ConfirmPassword" class="form-label">ConfirmPassword</label>
+    <input type="password" class="form-control {{#ifCond acceptConfirmPassword '==' 2}} is-valid {{/ifCond}} {{#ifCond confirmPassword '==' 0}} is-invalid {{/ifCond}} {{#ifCond acceptConfirmPassword '==' 3}} is-invalid {{/ifCond}} {{#ifCond acceptConfirmPassword '==' 1}} is-invalid {{/ifCond}}" id="ConfirmPassword" name="confirmPassword" {{#ifCond confirmPassword '!=' 0}} value="{{../confirmPassword}}" {{/ifCond}}>
+    {{#ifCond confirmPassword '==' 0}}
+    <div class="invalid-feedback">
+      ban chua nhap lai mat khau.
+    </div>
+    {{/ifCond}}
+    {{#ifCond acceptConfirmPassword '==' 3}}
+    <div class="invalid-feedback">
+      ca 2 mat khau phai giong nhau.
+    </div>
+    {{/ifCond}}
+    {{#ifCond acceptConfirmPassword '==' 1}}
+    <div class="invalid-feedback">
+      mat khau nhap lai can nhieu hon 6 ki tu.
+    </div>
+    {{/ifCond}}
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Dang ky</button>
+  </div>
+</form>
