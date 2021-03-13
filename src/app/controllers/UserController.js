@@ -8,9 +8,19 @@ const passport = require('passport');
 
 
 class UserController {
-    // get /register
+  // get /register
     register(req,res) {
-        res.render('register');
+        var loggedIn = req.user
+        var admin = false
+        if(loggedIn){
+            if(req.user.role === 'admin'){
+                admin = true
+            }
+        }
+        res.render('register',{
+            loggedIn,
+            admin
+        });
     }
     // post /register
     async createUser(req,res) {
@@ -23,7 +33,7 @@ class UserController {
         let acceptUsername = 0;
         let acceptPassword = 0;
         let acceptConfirmPassword = 0;
-
+        let banned = false
         if(!email){
             email = 0;
         }else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
@@ -34,6 +44,9 @@ class UserController {
                 acceptEmail = 1;
             }else{
                 acceptEmail = 2;
+            }
+            if(emailExist.banned === true){
+                banned = true
             }
         }
         if(!username){
@@ -66,8 +79,9 @@ class UserController {
         }else{
             acceptConfirmPassword = 1;
         }
-        if(email == 0 || notEmail == true || acceptEmail == 1 || username == 0 || acceptUsername == 1 || acceptUsername == 3 || password == 0 || acceptPassword == 1 || confirmPassword == 0 || acceptConfirmPassword == 3 || acceptConfirmPassword == 1){
+        if(banned === true || email == 0 || notEmail == true || acceptEmail == 1 || username == 0 || acceptUsername == 1 || acceptUsername == 3 || password == 0 || acceptPassword == 1 || confirmPassword == 0 || acceptConfirmPassword == 3 || acceptConfirmPassword == 1){
             res.render('register',{
+                banned,
                 email,
                 username,
                 password,
@@ -80,6 +94,8 @@ class UserController {
                 
             })
         }else{
+            req.body.role = 'user'
+            req.body.banned = 'false'
             const {email,username, password: plainTextPassword} = req.body;
             const password = await bcrypt.hash(plainTextPassword, 10);
 
@@ -87,6 +103,8 @@ class UserController {
                 email,
                 username,
                 password,
+                role:req.body.role,
+                banned:req.body.banned
             })
                 try {
                     user.save();
@@ -100,33 +118,49 @@ class UserController {
     
     // get /login
     login(req,res) {
-        let loggedIn = req.user;
+        var loggedIn = req.user
+        var admin = false
         if(loggedIn){
+            if(req.user.role === 'admin'){
+                admin = true
+            }
+        }
+        if(!loggedIn){
+            res.render('log-in',{
+                loggedIn,
+                admin
+            });
+            
+        }else{
             return res.redirect('/')
-        }else{
-            res.render('log-in');
         }
         
     }
+    // get /test-user
     testUser(req, res){
-        let name = req.user
-        if(!name){
-            name = 0
-        }else{
-            name = req.user.username
+        var loggedIn = req.user
+        let name = req.user.username
+        var admin = false
+        if(loggedIn){
+            if(req.user.role === 'admin'){
+                admin = true
+            }
         }
-        res.render('test-user', {
-            name
-        })
-    }
-    loginBasic(req, res, next){
+        
+          res.render('test-user', {
+                loggedIn,
+                name,
+                admin
+            })
         
     }
+    //post
     async loginUser(req,res,next){
         let username = req.body.username;
         let password = req.body.password;
         let wrongPassword = false;
         let wrongUsername = false;
+        let banned = false
         if(!username) {
             username = 0
         }
@@ -136,22 +170,30 @@ class UserController {
         if(username && password){
             const user = await User.findOne({username: username});
             if(user){
-                const validPassword = await bcrypt.compare(password, user.password)
-                if(validPassword){
-                    passport.authenticate('local', function(err, user, info) {
-                        if (err) { return next(err); }
-                        if (!user) { return res.redirect('/login'); }
-                        req.logIn(user, function(err) {
-                          if (err) { 
-                              return next(err); 
-                            }else{
-                                return res.redirect('/test-user')
-                            }
-                        });
-                      })(req, res, next);
+                if(user.banned === true){
+                    banned = true
+                    res.render('log-in', {
+                        banned
+                    });
                 }else{
-                    wrongPassword = true
+                    const validPassword = await bcrypt.compare(password, user.password)
+                    if(validPassword){
+                        passport.authenticate('local', function(err, user, info) {
+                            if (err) { return next(err); }
+                            if (!user) { return res.redirect('/login'); }
+                            req.logIn(user, function(err) {
+                            if (err) { 
+                                return next(err); 
+                                }else{
+                                    return res.redirect('/test-user')
+                                }
+                            });
+                        })(req, res, next);
+                    }else{
+                        wrongPassword = true
+                    }
                 }
+                
             }else{
                 wrongUsername = true
             }

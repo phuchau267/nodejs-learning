@@ -1,7 +1,7 @@
 <form class="row g-3" action="/login" method="post">
   <div class="col-md-4">
     <label for="Username" class="form-label">Username</label>
-    <input type="text" class="form-control {{#ifCond username '==' 0}} is-invalid {{/ifCond}} {{#ifCond wrongUsername '==' true}} is-invalid {{/ifCond}}" id="Username" name="username" {{#ifCond username '!=' 0}} value="{{../username}}" {{/ifCond}}>
+    <input type="text" class="form-control {{#ifCond banned '===' true}} is-invalid {{/ifCond}}  {{#ifCond username '==' 0}} is-invalid {{/ifCond}} {{#ifCond wrongUsername '==' true}} is-invalid {{/ifCond}}" id="Username" name="username" {{#ifCond username '!=' 0}} value="{{../username}}" {{/ifCond}}>
     {{#ifCond username '==' 0}}
     <div class="invalid-feedback">
       ban chua nhap ten dang nhap.
@@ -10,6 +10,11 @@
     {{#ifCond wrongUsername '==' true}}
     <div class="invalid-feedback">
       ten dang nhap ko chinh xac.
+    </div>
+    {{/ifCond}}
+    {{#ifCond banned '===' true}}
+    <div class="invalid-feedback">
+      tai khoan nay da bi ban.
     </div>
     {{/ifCond}}
   </div>

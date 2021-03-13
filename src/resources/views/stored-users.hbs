@@ -1,0 +1,160 @@
+<form name="container-form" class="mt-4" method="POST" action="/users/handle-form-action"></form>
+    <div>
+        <h3>tất cả người dùng</h3>
+        <a href="/admin/banned">người dùng bị ban({{bannedCount}})</a>
+        <a href="/admin/extraAdmin">admin mini</a>
+    </div>
+
+    <div class="mt-4 d-flex align-items-center">
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+        <label class="form-check-label" for="checkbox-all">
+            Chọn tất cả
+        </label>
+        </div>
+        <select class="form-select checkbox-select-all-options" name="action" aria-label="Default select example" required>
+        <option value="">Chọn hành động</option>
+        <option value="ban">Ban</option>
+        </select>
+        <button class="btn btn-primary btn-sm check-all-submit-btn"disabled>Thực hiện</button>
+    </div>
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th scope="col" colspan="2">#</th>
+            <th scope="col">Tên tai khoan</th>
+            <th scope="col">Chức vụ</th>
+            <th scope="col" colspan="2">Thời gian tạo</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each users}}
+        <tr>
+            <td>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="userIds[]" value="{{this._id}}">
+            </div>
+            </td>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.username}}</td>
+            <td>{{this.role}}</td>
+            <td>{{this.userCreatedAt}}</td>
+            <td>
+                <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}"
+                    data-target="#add-admin-modal">Thêm làm Admin</a>
+                <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}"
+                    data-target="#ban-user-modal">Ban</a>
+            </td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="5" class="text-center">
+            Bạn chưa co ng dung nao.
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</form>
+
+{{!-- Confirm delete course --}}
+<div id="ban-user-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cấm người dùng?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Cấm người dùng sẽ khiến họ không thể sử dụng tài khoản này nữa?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-ban-user" type="button" class="btn btn-danger">Cấm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<div id="add-admin-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thêm làm Admin?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Thêm Admin sẽ giúp người dùng này có thêm chức năng thêm truyện</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-add-admin" type="button" class="btn btn-danger">Thêm Admin</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Delete hidden form --}}
+<form name="ban-user-form" method="POST"></form>
+<form name="add-admin-form" method="POST"></form>
+<script>
+  document.addEventListener('DOMContentLoaded', function () { // cai nay la sau khi domcontentloaded co nghia la sau khi jquery loaded thi moi chay
+    var userId;
+    var banForm = document.forms['ban-user-form'];
+    var addAdminForm = document.forms['add-admin-form'];
+    var btnBanUser = document.getElementById('btn-ban-user');
+    var btnAddAdmin = document.getElementById('btn-add-admin');
+    var checkboxAll = $('#checkbox-all');
+    var usersCheckbox = $('input[name="userIds[]"]');
+    var checkAllSubmitBtn = $('.check-all-submit-btn');
+    // When dialog confirm clicked
+    $('#ban-user-modal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      userId = button.data('id');
+    });
+
+    // When delete course btn clicked
+    btnBanUser.onclick = function () {
+      banForm.action = '/admin/users/' + userId + '/ban?_method=PUT';
+      banForm.submit();
+    };
+   
+    $('#add-admin-modal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      userId = button.data('id');
+    });
+
+
+    btnAddAdmin.onclick = function () {
+      addAdminForm.action = '/admin/users/' + userId + '?_method=PUT';
+      addAdminForm.submit();
+    };
+    //checkboxAll changed
+    checkboxAll.change( function () {
+      var isCheckedAll = $(this).prop('checked')
+      usersCheckbox.prop('checked', isCheckedAll)
+      renderCheckAllSubmitBtn();
+    });
+
+    //small checkbox changed
+    usersCheckbox.change( function () {
+      var isCheckedAll = usersCheckbox.length === $('input[name="userIds[]"]:checked').length;
+      checkboxAll.prop('checked',isCheckedAll)
+      renderCheckAllSubmitBtn();
+    });
+    
+    // re-render checkallsubmitbtn
+    function renderCheckAllSubmitBtn(){
+      var checkCount = $('input[name="userIds[]"]:checked').length;
+      if(checkCount > 0){
+        checkAllSubmitBtn.attr('disabled',false)
+      }else{
+        checkAllSubmitBtn.attr('disabled', true)
+      }
+    }
+  });
+</script>

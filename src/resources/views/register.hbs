@@ -1,7 +1,7 @@
 <form class="row g-3" action="/register" method="post">
   <div class="col-md-4">
     <label for="Email" class="form-label">Email</label>
-    <input type="text" class="form-control {{#ifCond acceptEmail '==' 2}} is-valid {{/ifCond}} {{#ifCond email '==' 0}} is-invalid {{/ifCond}} {{#ifCond notEmail '==' true}} is-invalid {{/ifCond}} {{#ifCond acceptEmail '==' 1}} is-invalid {{/ifCond}}" id="Email" name="email" {{#ifCond email '!=' 0}} value="{{../email}}" {{/ifCond}} >
+    <input type="text" class="form-control {{#ifCond banned '===' true}} is-invalid {{/ifCond}} {{#ifCond acceptEmail '==' 2}} is-valid {{/ifCond}} {{#ifCond email '==' 0}} is-invalid {{/ifCond}} {{#ifCond notEmail '==' true}} is-invalid {{/ifCond}}  {{#ifCond acceptEmail '==' 1}} is-invalid {{/ifCond}} " id="Email" name="email" {{#ifCond email '!=' 0}} value="{{../email}}" {{/ifCond}} >
     {{#ifCond email '==' 0}}
     <div class="invalid-feedback">
       ban chua nhap email.
@@ -20,6 +20,11 @@
     {{#ifCond acceptEmail '==' 2}}
     <div class="valid-feedback">
       ban co the su dung email nay.
+    </div>
+    {{/ifCond}}
+    {{#ifCond banned '===' true}}
+    <div class="invalid-feedback">
+      email nay da bi cam.
     </div>
     {{/ifCond}}
   </div>

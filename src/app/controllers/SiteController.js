@@ -3,7 +3,19 @@
 
 class SiteController {
     index(req, res, next) {
-        res.render('home');
+        var loggedIn = req.user
+        var admin = false
+        if(loggedIn){
+            if(req.user.role === 'admin'){
+                admin = true
+            }
+        }
+        
+        
+        res.render('home',{
+            loggedIn,
+            admin
+        });
 
     }
 

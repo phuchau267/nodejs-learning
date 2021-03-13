@@ -39,7 +39,7 @@
                 <td>{{this.level}}</td>
                 <td>{{this.deletedAt}}</td>
                 <td>
-                    <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Khôi phục</a>
+                    <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#restore-course-modal">Khôi phục</a>
                     <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course-modal">Xóa vĩnh viễn</a>
                 </td>
             </tr>
@@ -69,8 +69,29 @@
         <p>Hành động này không thể khôi phục. Bạn vẫn muốn xóa khóa học này?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
         <button id="btn-delete-course" type="button" class="btn btn-danger">Xóa vĩnh viễn</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+{{!-- Confirm restore course --}}
+<div id="restore-course-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Khôi Phục khóa học?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>bạn có chắc muốn khôi phục khóa học này?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-restore-course" type="button" class="btn btn-danger">Khoi phuc</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
       </div>
     </div>
   </div>
@@ -85,6 +106,7 @@
         var deleteForm = document.forms['delete-course-form'];
         var restoreForm = document.forms['restore-course-form'];
         var btnDeleteCourse = document.getElementById('btn-delete-course');
+        var btnRestoreCourse = document.getElementById('btn-restore-course');
         var restoreBtn = $('.btn-restore');
         var checkboxAll = $('#checkbox-all');
         var courseItemCheckbox = $('input[name="courseIds[]"]');
@@ -101,13 +123,17 @@
             deleteForm.submit();
         }
         // Restore btn clicked
-        restoreBtn.click(function (e) {
-          e.preventDefault();
-          
-          var courseId = $(this).data('id');
-          restoreForm.action = '/courses/' + courseId + '/restore?_method=PATCH';
-          restoreForm.submit();
+        $('#restore-course-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            courseId = button.data('id');
         });
+        
+        // When delete course btn clicked
+        btnRestoreCourse.onclick = function () {
+            restoreForm.action = '/courses/' + courseId + '/restore?_method=PATCH';
+            restoreForm.submit();
+        }
+
         checkboxAll.change( function () {
           var isCheckedAll = $(this).prop('checked')
           courseItemCheckbox.prop('checked', isCheckedAll)

@@ -8,14 +8,21 @@ const removeVietnameseTones = require('../../util/slug-setting');
 
 
 class CourseController {
-
-    index(req, res, next) {
+    //get
+        index(req, res, next) {
+            var loggedIn = req.user
+            var admin = false
+            if(loggedIn){
+            if(req.user.role === 'admin'){
+                admin = true
+            }
+            }
             let page = +req.query.page || 1;
             let PageSize = 2;
             let skipCourse = (page - 1)*PageSize;
-            let nextPage = +req.query.page + 1 || 2;
-            let prevPage = +req.query.page - 1;
-            let prevPage2 = +req.query.page - 2;
+            let nextPage = +page + 1;
+            let prevPage = +page - 1;
+            let prevPage2 = +page - 2;
             Course
             .find()
             .skip(skipCourse)
@@ -24,31 +31,53 @@ class CourseController {
                 Course.countDocuments((err, count) => {
                     if (err) return next(err);
                     res.render('courses',{
+                        loggedIn,
                         current: page,
                         nextPage,
                         prevPage,
                         prevPage2,
                         pages: Math.ceil(count/PageSize),
-                        courses: mutipleMongooseToObject(courses)
+                        courses: mutipleMongooseToObject(courses),
+                        admin
                     })
 
                 });
                 
             });
-    }
+        }
 
+        //get
     show(req, res, next) {
+        var loggedIn = req.user
+        var admin = false
+        if(loggedIn){
+            if(req.user.role === 'admin'){
+                admin = true
+            }
+        }
         Course.findOne({ slug: req.params.slug })
             .then(course => {
                 res.render('courses-detail', { 
-                    course: mongooseToObject(course) 
+                    loggedIn,
+                    course: mongooseToObject(course),
+                    admin
                 });
             })
             .catch(next);
     }
-    
+    //get
     create(req, res, next) {
-        res.render('create')
+        var loggedIn = req.user
+        var admin = false
+        if(loggedIn){
+            if(req.user.role === 'admin'){
+                admin = true
+            }
+        }
+        res.render('create',{
+            loggedIn,
+            admin
+        })
     }
     async store(req, res, next) {
         req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
@@ -90,10 +119,19 @@ class CourseController {
     }
     // GET /courses/:id/edit
     edit(req, res, next) {
+        var loggedIn = req.user
+        var admin = false
+        if(loggedIn){
+            if(req.user.role === 'admin'){
+                admin = true
+            }
+        }
         Course.findById( req.params.id ) 
             .then(course => {
                 res.render('courses-edit', {
-                    course: mongooseToObject(course) 
+                    loggedIn,
+                    course: mongooseToObject(course),
+                    admin
                 })
             })
             .catch(next);

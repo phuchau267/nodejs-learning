@@ -1,0 +1,161 @@
+<form name="container-form" class="mt-4" method="POST" action="/users/handle-form-action"></form>
+    <div>
+        <h3>Mini Admin</h3>
+        <a href="/admin/users">so ng dung ko bi ban</a>
+        <a href="/admin/extraAdmin">ng dung bi ban</a>
+    </div>
+
+    <div class="mt-4 d-flex align-items-center">
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+        <label class="form-check-label" for="checkbox-all">
+            Chọn tất cả
+        </label>
+        </div>
+        <select class="form-select checkbox-select-all-options" name="action" aria-label="Default select example" required>
+        <option value="">Chọn hành động</option>
+        <option value="UnAdmin">xuong chuc</option>
+        <option value="ban">ban</option>
+        </select>
+        <button class="btn btn-primary btn-sm check-all-submit-btn"disabled>Thực hiện</button>
+    </div>
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th scope="col" colspan="2">#</th>
+            <th scope="col">Tên tai khoan</th>
+            <th scope="col">Chức vụ</th>
+            <th scope="col" colspan="2">Thời điểm lam admin</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each users}}
+        <tr>
+            <td>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="userIds[]" value="{{this._id}}">
+            </div>
+            </td>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.username}}</td>
+            <td>{{this.role}}</td>
+            <td>{{this.userUpdatedAt}}</td>
+            <td>
+                <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#unAdmin-user-modal">xuong chuc</a>
+                <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#ban-user-modal">ban</a>
+            </td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="5" class="text-center">
+            Bạn chưa co ng dung nao bi ban.
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</form>
+
+{{!-- Confirm delete course --}}
+<div id="unAdmin-user-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Bo admin Người Dùng?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Ng nay se ko con lam admin nua</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-unAdmin-user" type="button" class="btn btn-danger">OK</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Confirm restore course --}}
+<div id="ban-user-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cam Người Dùng?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc muốn Cấm người dùng này ko?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-ban-user" type="button" class="btn btn-danger">OK</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{!-- Delete hidden form --}}
+<form name="unAdmin-user-form" method="POST"></form>
+<form name="ban-user-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var userId;
+        var unAdminForm = document.forms['unAdmin-user-form'];
+        var banUserForm = document.forms['ban-user-form'];
+        var btnUnAdminUser = document.getElementById('btn-unAdmin-user');
+        var btnBanUser = document.getElementById('btn-ban-user');
+        var checkboxAll = $('#checkbox-all');
+        var usersCheckbox = $('input[name="userIds[]"]');
+        var checkAllSubmitBtn = $('.check-all-submit-btn');
+        // When dialog confirm clicked
+        $('#unAdmin-user-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            userId = button.data('id');
+        });
+        
+        // When delete course btn clicked
+        btnUnAdminUser.onclick = function () {
+            unAdminForm.action = '/admin/extraAdmin/' + userId + '/unAdmin?_method=PUT';
+            unAdminForm.submit();
+        }
+        // Restore btn clicked
+        $('#ban-user-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            userId = button.data('id');
+        });
+
+        btnBanUser.onclick = function () {
+            banUserForm.action = '/admin/extraAdmin/' + userId + '/banAdmin?_method=PUT';
+            banUserForm.submit();
+        }
+
+        checkboxAll.change( function () {
+          var isCheckedAll = $(this).prop('checked')
+          courseItemCheckbox.prop('checked', isCheckedAll)
+          renderCheckAllSubmitBtn();
+        });
+
+        //small checkbox changed
+        courseItemCheckbox.change( function () {
+          var isCheckedAll = courseItemCheckbox.length === $('input[name="userIds[]"]:checked').length;
+          checkboxAll.prop('checked',isCheckedAll)
+          renderCheckAllSubmitBtn();
+        });
+        
+        // re-render checkallsubmitbtn
+        function renderCheckAllSubmitBtn(){
+          var checkCount = $('input[name="userIds[]"]:checked').length;
+          if(checkCount > 0){
+            checkAllSubmitBtn.attr('disabled', false)
+          }else{
+            checkAllSubmitBtn.attr('disabled',true)
+          }
+        }
+    });
+</script>
