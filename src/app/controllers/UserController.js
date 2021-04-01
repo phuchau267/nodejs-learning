@@ -41,13 +41,16 @@ class UserController {
         }else{
             const emailExist = await User.findOne({email: email});
             if(emailExist){
-                acceptEmail = 1;
+                if(emailExist.banned === true){
+                    banned = true
+                }else{
+                    acceptEmail = 1;
+                }
+                
             }else{
                 acceptEmail = 2;
             }
-            if(emailExist.banned === true){
-                banned = true
-            }
+            
         }
         if(!username){
             username = 0;
@@ -219,6 +222,22 @@ class UserController {
             return next()
         }
         res.redirect('/login')
+    }
+
+    likedComic(req, res, next){
+        const user = User.findById({_id: req.user._id})
+        console.log(user)
+        User.updateOne({_id: req.user._id},
+            {$push: {likedComic: {comicName: req.params.slug}}})
+
+        
+        res.redirect('back')
+    }
+    unLikedComic(req, res, next){
+        var likedComic = req.user.likedComic
+        var comicIndex = likedComic.indexOf(req.params.slug)
+        likedComic.splice(comicIndex, 1);
+        console.log(likedComic)
     }
 }
 module.exports = new UserController();

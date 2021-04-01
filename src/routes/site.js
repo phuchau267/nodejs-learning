@@ -16,6 +16,9 @@ router.post('/register', UserController.createUser);
 router.get('/login', UserController.login);
 router.post('/login',UserController.loginUser);
 
+router.post('/likedComic/:slug',UserController.checkLogin,UserController.likedComic)
+router.post('/likedComic/:slug/delete',UserController.checkLogin,UserController.unLikedComic)
+
 router.get('/test-user', UserController.testUser);
 
 router.get('/logout', UserController.logout)

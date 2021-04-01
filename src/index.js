@@ -35,6 +35,7 @@ app.use(morgan('combined'));
 require('./util/passport')(passport);   
 
 app.use(session({
+    name:'u_',
     secret: 'ancucchothuiquat',
     resave: false,
     saveUninitialized: false,
@@ -52,7 +53,10 @@ app.use(passport.session());
 
 app.engine(
     'hbs',
-    handlebars({
+    handlebars.create({
+        defaultLayout: 'main',
+        layoutsDir: path.join(__dirname, "resources/views/layouts"),
+        partialsDir: path.join(__dirname, "resources/views/partials"),
         extname: '.hbs',
         helpers: {
             minus: (a,b) => a - b,
@@ -91,7 +95,7 @@ app.engine(
             },
 
         }
-    }),
+    }).engine,
     
 );
 

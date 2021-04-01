@@ -9,17 +9,3 @@
 
 .disabled {
   pointer-events: none; }
-
-#pagination-test ul,
-#pagination-test .paginationjs {
-  list-style: none;
-  display: flex; }
-
-#pagination-test .paginationjs-page {
-  margin: 0 20px; }
-
-#pagination-test .J-paginationjs-go-pagenumber {
-  width: 30px; }
-
-#pagination-test .paginationjs-go-input {
-  margin: 0 20px; }

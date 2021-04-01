@@ -102,7 +102,8 @@
    
     //checkboxAll changed
     checkboxAll.change( function () {
-      var isCheckedAll = $(this).prop('checked')
+      var isCheckedAll = $(this).prop('checked');
+      
       courseItemCheckbox.prop('checked', isCheckedAll)
       renderCheckAllSubmitBtn();
     });

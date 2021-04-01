@@ -3,6 +3,7 @@ const siteRouter = require('./site');
 const courseRouter = require('./courses');
 const meRouter = require('./me');
 const adminRouter = require('./admin');
+const commentRouter = require('./comment');
 // o day phai sap xep cai "/:slug" sau do toi "/" phai nam cuoi 
 function route(app) {
 
@@ -13,6 +14,8 @@ function route(app) {
     app.use('/news', newsRouter);
 
     app.use('/admin', adminRouter);
+
+    app.use('/comment', commentRouter);
 
     app.use('/', siteRouter);
     

@@ -1,2 +1,57 @@
 <h1>{{ course.name}}</h1>
 <p>{{ course.description }}</p>
+
+<form action="/likedComic/{{chapterSlug}}" method="post">
+<button type="submit">theo doi</button>
+</form>
+<form method="POST" id="postForm">
+<div class="form-floating">
+    <label for="comment">Comments</label>
+    <input class="form-control" placeholder="Leave a comment here" id="comment" name="comment"></input>
+</div>
+<button class="btn btn-primary" type="submit" id="submit-form">Button</button>
+</form>
+<input type = "hidden" id = "chapterSlug" value = {{chapterSlug}} />
+<div class="comment-result">
+
+{{#each comments}}
+        <div>
+            <h4>{{this.commentName}}</h4>
+            <p>{{this.comment}}</p>
+        </div>
+{{/each}}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var chapterSlug = document.getElementById("chapterSlug").value;
+        
+        var output = $('.comment-result')
+            $(document).on('click','#submit-form',function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                global: false,
+                type: 'POST',
+                cache:false,
+                url: '/comment/'+ chapterSlug,  
+                dataType: 'html',
+                data: {
+                    comment: $("#comment").val()
+                },
+                
+                success: function (result) {
+                    output.html(result)
+                    
+                   $("#postForm")[0].reset();
+                },
+                error: function (request, status, error) {
+                    serviceError();
+                }
+            });
+        });
+        
+    })
+    
+</script>
+

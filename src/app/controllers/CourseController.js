@@ -1,8 +1,11 @@
 const Course = require('../models/Course');
+const Comment = require('../models/Comment');
+const TimeDifferent = require('../../util/timeDiff')
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
 const shortid = require('shortid');
 const removeVietnameseTones = require('../../util/slug-setting');
+const { likedComic } = require('./UserController');
 // class thi viet hoa chu cai dau
 
 
@@ -48,20 +51,37 @@ class CourseController {
 
         //get
     show(req, res, next) {
+        let chapterSlug = req.params.slug
         var loggedIn = req.user
         var admin = false
+        let alreadyLikedComic = false
         if(loggedIn){
             if(req.user.role === 'admin'){
                 admin = true
             }
+            var likedComics = req.user.likedComic
+            likedComics.forEach(element => {
+                console.log(element)
+            })
         }
         Course.findOne({ slug: req.params.slug })
             .then(course => {
-                res.render('courses-detail', { 
-                    loggedIn,
-                    course: mongooseToObject(course),
-                    admin
-                });
+                if(course){
+                    Comment.find({commentSlug: req.params.slug}).sort({createdAt: -1})
+                    .then(comments => {
+
+                        // console.log(alreadyLikedComic)
+                        res.render('courses-detail', { 
+                            alreadyLikedComic,
+                            comments: mutipleMongooseToObject(comments),
+                            chapterSlug,
+                            loggedIn,
+                            course: mongooseToObject(course),
+                            admin
+                        });
+                    })
+                }
+                
             })
             .catch(next);
     }
