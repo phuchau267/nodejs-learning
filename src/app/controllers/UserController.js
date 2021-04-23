@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-
+const Comic = require('../models/Comic');
 
 
 
@@ -213,9 +213,10 @@ class UserController {
     }
 
     logout(req, res, next){
+        req.logOut();
         req.session.destroy(function (err) {
             res.redirect('/login'); //Inside a callback… bulletproof!
-          });
+        });
     }
     checkLogin(req, res, next){
         if(req.isAuthenticated()){
@@ -224,20 +225,125 @@ class UserController {
         res.redirect('/login')
     }
 
-    likedComic(req, res, next){
-        const user = User.findById({_id: req.user._id})
-        console.log(user)
-        User.updateOne({_id: req.user._id},
-            {$push: {likedComic: {comicName: req.params.slug}}})
-
+    followComic(req, res, next){
         
-        res.redirect('back')
+        User.findOneAndUpdate({username: req.user.username},
+        {
+            $addToSet:{
+                followComics: req.params.slug
+            }
+        })
+        .then(user => {
+            
+            res.redirect('back')
+        })
+    
+        
+        
     }
-    unLikedComic(req, res, next){
-        var likedComic = req.user.likedComic
-        var comicIndex = likedComic.indexOf(req.params.slug)
-        likedComic.splice(comicIndex, 1);
-        console.log(likedComic)
+    unFollowComic(req, res, next){
+        
+        User.findOneAndUpdate({username: req.user.username},
+            {
+                $pull:{
+                    followComics: req.params.slug
+                }
+            })
+            .then(user => {
+                
+                res.redirect('back')
+            })
     }
+    likeComic(req, res, next){
+        Comic.findOneAndUpdate({slug :req.params.slug}, 
+            {
+                $inc : {
+                    likeCounts : 1
+                }
+            })
+            .then(user => {
+                console.log(user.likeCounts)
+            })
+            
+
+        User.findOneAndUpdate({username: req.user.username},
+            {
+                $addToSet:{
+                    likeComics: req.params.slug
+                }
+            })
+            .then(user => {
+                
+                res.redirect('back')
+            })
+            
+                
+    }
+    unlikeComic(req, res, next){
+        Comic.findOneAndUpdate({slug :req.params.slug}, 
+            {
+                $inc : {
+                    likeCounts : -1
+                }
+            })
+            .then(user => {
+                console.log(user.likeCounts)
+            })
+
+        User.findOneAndUpdate({username: req.user.username},
+            {
+                $pull:{
+                    likeComics: req.params.slug
+                }
+            })
+            .then(user => {
+                
+                res.redirect('back')
+            })
+    }
+    dislikeComic(req, res, next){
+        Comic.findOneAndUpdate({slug :req.params.slug}, 
+            {
+                $inc : {
+                    dislikeCounts : 1
+                }
+            })
+            .then(user => {
+                console.log(user.dislikeCounts)
+            })
+        User.findOneAndUpdate({username: req.user.username},
+            {
+                $addToSet:{
+                    dislikeComics: req.params.slug
+                }
+            })
+            .then(user => {
+                
+                res.redirect('back')
+            })
+    }
+    undislikeComic(req, res, next){
+        Comic.findOneAndUpdate({slug :req.params.slug}, 
+            {
+                $inc : {
+                    dislikeCounts : -1
+                }
+            })
+            .then(user => {
+                console.log(user.dislikeCounts)
+            })
+
+        User.findOneAndUpdate({username: req.user.username},
+            {
+                $pull:{
+                    dislikeComics: req.params.slug
+                }
+            })
+            .then(user => {
+                
+                res.redirect('back')
+            })
+    }
+    
 }
 module.exports = new UserController();

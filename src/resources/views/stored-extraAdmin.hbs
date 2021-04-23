@@ -1,8 +1,8 @@
-<form name="container-form" class="mt-4" method="POST" action="/users/handle-form-action"></form>
+<form name="container-form" class="mt-4" method="POST" action="/admin/users/handle-form-action">
     <div>
         <h3>Mini Admin</h3>
         <a href="/admin/users">so ng dung ko bi ban</a>
-        <a href="/admin/extraAdmin">ng dung bi ban</a>
+        <a href="/admin/banned">ng dung bi ban</a>
     </div>
 
     <div class="mt-4 d-flex align-items-center">
@@ -14,7 +14,7 @@
         </div>
         <select class="form-select checkbox-select-all-options" name="action" aria-label="Default select example" required>
         <option value="">Chọn hành động</option>
-        <option value="UnAdmin">xuong chuc</option>
+        <option value="unAdmin">xuong chuc</option>
         <option value="ban">ban</option>
         </select>
         <button class="btn btn-primary btn-sm check-all-submit-btn"disabled>Thực hiện</button>
@@ -131,19 +131,19 @@
         });
 
         btnBanUser.onclick = function () {
-            banUserForm.action = '/admin/extraAdmin/' + userId + '/banAdmin?_method=PUT';
+            banUserForm.action = '/admin/users/' + userId + '/ban?_method=PUT';
             banUserForm.submit();
         }
 
         checkboxAll.change( function () {
           var isCheckedAll = $(this).prop('checked')
-          courseItemCheckbox.prop('checked', isCheckedAll)
+          usersCheckbox.prop('checked', isCheckedAll)
           renderCheckAllSubmitBtn();
         });
 
         //small checkbox changed
-        courseItemCheckbox.change( function () {
-          var isCheckedAll = courseItemCheckbox.length === $('input[name="userIds[]"]:checked').length;
+        usersCheckbox.change( function () {
+          var isCheckedAll = usersCheckbox.length === $('input[name="userIds[]"]:checked').length;
           checkboxAll.prop('checked',isCheckedAll)
           renderCheckAllSubmitBtn();
         });

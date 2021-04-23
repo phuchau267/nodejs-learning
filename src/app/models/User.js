@@ -12,7 +12,9 @@ const User = new Schema({
     password:{type: String, required: true},
     role:{type: String},
     banned:{type: Boolean},
-    likedComic: [{comicName: String}],
+    followComics: [String],
+    likeComics:[String],
+    dislikeComics:[String],
     userCreatedAt:{type: String},
     userUpdatedAt:{type: String},
 }, opts);

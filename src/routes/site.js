@@ -16,8 +16,13 @@ router.post('/register', UserController.createUser);
 router.get('/login', UserController.login);
 router.post('/login',UserController.loginUser);
 
-router.post('/likedComic/:slug',UserController.checkLogin,UserController.likedComic)
-router.post('/likedComic/:slug/delete',UserController.checkLogin,UserController.unLikedComic)
+router.post('/followComic/:slug',UserController.checkLogin,UserController.followComic)
+router.post('/unfollowComic/:slug',UserController.checkLogin,UserController.unFollowComic)
+
+router.post('/likeComic/:slug',UserController.checkLogin,UserController.likeComic)
+router.post('/unlikeComic/:slug',UserController.checkLogin,UserController.unlikeComic)
+router.post('/dislikeComic/:slug',UserController.checkLogin,UserController.dislikeComic)
+router.post('/undislikeComic/:slug',UserController.checkLogin,UserController.undislikeComic)
 
 router.get('/test-user', UserController.testUser);
 

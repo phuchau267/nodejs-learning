@@ -1,6 +1,6 @@
-<form name="container-form" class="mt-4" method="POST" action="/courses/handle-form-action">
+<form name="container-form" class="mt-4" method="POST" action="/admin/comics/handle-form-action">
     <div>
-      <a href="/me/stored/courses">Danh sách khóa học</a>
+      <a href="/admin/storedComics">Danh sách khóa học</a>
       <h3>Khóa học đã xóa</h3>
     </div>
     <div class="mt-4 d-flex align-items-center">
@@ -12,7 +12,7 @@
     </div>
     <select class="form-select checkbox-select-all-options" name="action" aria-label="Default select example" required>
       <option value="">Chọn hành động</option>
-      <option value="delete-forever"data-target="#delete-course-modal">Xóa vĩnh viễn</option>
+      <option value="delete-forever"data-target="#delete-comic-modal">Xóa vĩnh viễn</option>
       <option value="restore">Khôi phục</option>
     </select>
     <button class="btn btn-primary btn-sm check-all-submit-btn "disabled>Thực hiện</button>
@@ -27,11 +27,11 @@
             </tr>
         </thead>
         <tbody>
-            {{#each courses}}
+            {{#each comics}}
             <tr>
                 <td>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}">
+                    <input class="form-check-input" type="checkbox" name="comicIds[]" value="{{this._id}}">
                   </div>
                 </td>
                 <th scope="row">{{sum @index 1}}</th>
@@ -39,15 +39,15 @@
                 <td>{{this.level}}</td>
                 <td>{{this.deletedAt}}</td>
                 <td>
-                    <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#restore-course-modal">Khôi phục</a>
-                    <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course-modal">Xóa vĩnh viễn</a>
+                    <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#restore-comic-modal">Khôi phục</a>
+                    <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-comic-modal">Xóa vĩnh viễn</a>
                 </td>
             </tr>
             {{else}}
             <tr>
               <td colspan="5" class="text-center">
                 Thùng rác trống.
-                <a href="/me/stored/courses">Danh sách khóa học</a>
+                <a href="/admin/storedComics">Danh sách khóa học</a>
               </td>
             </tr>
             {{/each}}
@@ -56,7 +56,7 @@
 </form>
 
 {{!-- Confirm delete course --}}
-<div id="delete-course-modal" class="modal" tabindex="-1" role="dialog">
+<div id="delete-comic-modal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -69,7 +69,7 @@
         <p>Hành động này không thể khôi phục. Bạn vẫn muốn xóa khóa học này?</p>
       </div>
       <div class="modal-footer">
-        <button id="btn-delete-course" type="button" class="btn btn-danger">Xóa vĩnh viễn</button>
+        <button id="btn-delete-comic" type="button" class="btn btn-danger">Xóa vĩnh viễn</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
       </div>
     </div>
@@ -77,7 +77,7 @@
 </div> 
 
 {{!-- Confirm restore course --}}
-<div id="restore-course-modal" class="modal" tabindex="-1" role="dialog">
+<div id="restore-comic-modal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,66 +90,66 @@
         <p>bạn có chắc muốn khôi phục khóa học này?</p>
       </div>
       <div class="modal-footer">
-        <button id="btn-restore-course" type="button" class="btn btn-danger">Khoi phuc</button>
+        <button id="btn-restore-comic" type="button" class="btn btn-danger">Khoi phuc</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
       </div>
     </div>
   </div>
 </div>
 
-<form name="delete-course-form" method="POST"></form>
-<form name="restore-course-form" method="POST"></form>
+<form name="delete-comic-form" method="POST"></form>
+<form name="restore-comic-form" method="POST"></form>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var courseId;
-        var deleteForm = document.forms['delete-course-form'];
-        var restoreForm = document.forms['restore-course-form'];
-        var btnDeleteCourse = document.getElementById('btn-delete-course');
-        var btnRestoreCourse = document.getElementById('btn-restore-course');
+        var comicId;
+        var deleteForm = document.forms['delete-comic-form'];
+        var restoreForm = document.forms['restore-comic-form'];
+        var btnDeleteComic = document.getElementById('btn-delete-comic');
+        var btnRestoreComic = document.getElementById('btn-restore-comic');
         var restoreBtn = $('.btn-restore');
         var checkboxAll = $('#checkbox-all');
-        var courseItemCheckbox = $('input[name="courseIds[]"]');
+        var comicItemCheckbox = $('input[name="comicIds[]"]');
         var checkAllSubmitBtn = $('.check-all-submit-btn');
         // When dialog confirm clicked
-        $('#delete-course-modal').on('show.bs.modal', function (event) {
+        $('#delete-comic-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            courseId = button.data('id');
+            comicId = button.data('id');
         });
         
         // When delete course btn clicked
-        btnDeleteCourse.onclick = function () {
-            deleteForm.action = '/courses/' + courseId + '/force?_method=DELETE';
+        btnDeleteComic.onclick = function () {
+            deleteForm.action = '/comic/' + comicId + '/force?_method=DELETE';
             deleteForm.submit();
         }
         // Restore btn clicked
-        $('#restore-course-modal').on('show.bs.modal', function (event) {
+        $('#restore-comic-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            courseId = button.data('id');
+            comicId = button.data('id');
         });
         
         // When delete course btn clicked
-        btnRestoreCourse.onclick = function () {
-            restoreForm.action = '/courses/' + courseId + '/restore?_method=PATCH';
+        btnRestoreComic.onclick = function () {
+            restoreForm.action = '/comic/' + comicId + '/restore?_method=PATCH';
             restoreForm.submit();
         }
 
         checkboxAll.change( function () {
           var isCheckedAll = $(this).prop('checked')
-          courseItemCheckbox.prop('checked', isCheckedAll)
+          comicItemCheckbox.prop('checked', isCheckedAll)
           renderCheckAllSubmitBtn();
         });
 
         //small checkbox changed
-        courseItemCheckbox.change( function () {
-          var isCheckedAll = courseItemCheckbox.length === $('input[name="courseIds[]"]:checked').length;
+        comicItemCheckbox.change( function () {
+          var isCheckedAll = comicItemCheckbox.length === $('input[name="comicIds[]"]:checked').length;
           checkboxAll.prop('checked',isCheckedAll)
           renderCheckAllSubmitBtn();
         });
         
         // re-render checkallsubmitbtn
         function renderCheckAllSubmitBtn(){
-          var checkCount = $('input[name="courseIds[]"]:checked').length;
+          var checkCount = $('input[name="comicIds[]"]:checked').length;
           if(checkCount > 0){
             checkAllSubmitBtn.attr('disabled', false)
           }else{

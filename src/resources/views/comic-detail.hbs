@@ -1,0 +1,162 @@
+<h1>{{ comic.name}}</h1>
+<p>{{ comic.description }}</p>
+<div class="followbtn">
+<input type="checkbox" id="follow"{{#ifCond alreadyFollowComic '==' true}} checked {{/ifCond}}>
+ <label for="follow">{{#ifCond alreadyFollowComic '==' true}}da theo doi {{else}}theo doi{{/ifCond}}</label>
+
+</div>
+<div class="likebtn">
+<input type="checkbox" id="likeComic" {{#ifCond alreadylikeComic '==' true}} checked {{/ifCond}}>
+<label for="likeComic"><span id="likeNumber">{{likeCounts}}</span> like</label>
+</div>
+<div class="dislikebtn">
+<input type="checkbox" id="dislikeComic" {{#ifCond alreadydislikeComic '==' true}} checked {{/ifCond}}>
+<label for="dislikeComic"><span id="dislikeNumber">{{dislikeCounts}}</span> dislike</label>
+</div>
+
+<form method="POST" id="postForm">
+<div class="form-floating">
+    <label for="comment">Comments</label>
+    <input class="form-control" placeholder="Leave a comment here" id="comment" name="comment"></input>
+</div>
+<button class="btn btn-primary" type="submit" id="submit-form">Button</button>
+</form>
+<input type = "hidden" id = "chapterSlug" value = {{chapterSlug}} />
+<div class="comment-result">
+
+{{#each comments}}
+        <div>
+            <h4>{{this.commentName}}</h4>
+            <p>{{this.comment}}</p>
+        </div>
+{{/each}}
+</div>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var likeNumber = document.getElementById('likeNumber')
+        var dislikeNumber = document.getElementById('dislikeNumber')
+        var likeCount = likeNumber.innerHTML;
+        var dislikeCount = dislikeNumber.innerHTML;
+
+        var followForm = $('#followForm');
+        var unfollowForm = $('#unfollowForm');
+        var chapterSlug = document.getElementById("chapterSlug").value;
+        var followCheckbox = $('#follow');
+        var likeCheckbox = $('#likeComic');
+        var dislikeCheckbox = $('#dislikeComic');
+        var output = $('.comment-result')
+            followCheckbox.change(function () {
+                
+                if(followCheckbox.prop('checked') == true){
+                    $.ajax({
+                    type: 'POST',
+                    url: '/followComic/'+ chapterSlug,  
+                    });
+                }
+                if(followCheckbox.prop('checked') == false){
+                    $.ajax({
+                    type: 'POST',
+                    url: '/unfollowComic/'+ chapterSlug,  
+                    });
+                }
+            })
+            likeCheckbox.change(function() {
+                if(likeCheckbox.prop('checked') == true && dislikeCheckbox.prop('checked') == false){
+                    ++likeCount
+                    likeNumber.innerHTML = likeCount
+                    $.ajax({
+                    type: 'POST',
+                    url: '/likeComic/'+ chapterSlug,  
+                    });    
+                }else if(likeCheckbox.prop('checked') == true && dislikeCheckbox.prop('checked') == true){
+                    dislikeCheckbox.prop('checked',false)
+                    ++likeCount
+                    likeNumber.innerHTML = likeCount
+                    --dislikeCount
+                    dislikeNumber.innerHTML = dislikeCount
+                    $.ajax({
+                    type: 'POST',
+                    url: '/likeComic/'+ chapterSlug,  
+                    });    
+                    $.ajax({
+                    type: 'POST',
+                    url: '/undislikeComic/'+ chapterSlug,  
+                    });
+                }else if(likeCheckbox.prop('checked') == false){
+                    --likeCount
+                    likeNumber.innerHTML = likeCount
+                    $.ajax({
+                    type: 'POST',
+                    url: '/unlikeComic/'+ chapterSlug,  
+                    });
+                }
+                
+            })
+            dislikeCheckbox.change(function() {
+                if(dislikeCheckbox.prop('checked') == true && likeCheckbox.prop('checked') == false){
+                    ++dislikeCount
+                    dislikeNumber.innerHTML = dislikeCount
+                    $.ajax({
+                    type: 'POST',
+                    url: '/dislikeComic/'+ chapterSlug,  
+                    });
+                    
+                }else if(dislikeCheckbox.prop('checked') == true && likeCheckbox.prop('checked') == true){
+                    likeCheckbox.prop('checked',false)
+                    ++dislikeCount
+                    dislikeNumber.innerHTML = dislikeCount
+                    --likeCount
+                    likeNumber.innerHTML = likeCount
+                    $.ajax({
+                    type: 'POST',
+                    url: '/dislikeComic/'+ chapterSlug,  
+                    });
+                    $.ajax({
+                    type: 'POST',
+                    url: '/unlikeComic/'+ chapterSlug,  
+                    });
+                }
+                else if(dislikeCheckbox.prop('checked') == false){
+                    --dislikeCount
+                    dislikeNumber.innerHTML = dislikeCount
+                    $.ajax({
+                    type: 'POST',
+                    url: '/undislikeComic/'+ chapterSlug,  
+                    });
+                }
+            })
+
+
+
+
+
+            $(document).on('click','#submit-form',function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                global: false,
+                type: 'POST',
+                cache:false,
+                url: '/comment/'+ chapterSlug,  
+                dataType: 'html',
+                data: {
+                    comment: $("#comment").val()
+                },
+                
+                success: function (result) {
+                    output.html(result)
+                    
+                   $("#postForm")[0].reset();
+                },
+                error: function (request, status, error) {
+                    serviceError();
+                }
+            });
+        });
+        
+    })
+    
+</script>
+

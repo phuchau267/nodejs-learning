@@ -1,7 +1,7 @@
-<form name="container-form" class="mt-4" method="POST" action="/users/handle-form-action"></form>
+<form name="container-form" class="mt-4" method="POST" action="/admin/users/handle-form-action">
     <div>
-        <h3>Nguoi dung bi ban</h3>
-        <a href="/admin/users">so ng dung ko bi ban({{count}})</a>
+        <h3>Nguoi dung bi ban ({{count}})</h3>
+        <a href="/admin/users">so ng dung ko bi ban</a>
         <a href="/admin/extraAdmin">admin mini</a>
     </div>
 
@@ -14,7 +14,7 @@
         </div>
         <select class="form-select checkbox-select-all-options" name="action" aria-label="Default select example" required>
         <option value="">Chọn hành động</option>
-        <option value="Unban">Unban</option>
+        <option value="unBan">Unban</option>
         <option value="delete-forever">Xóa vĩnh viễn</option>
         </select>
         <button class="btn btn-primary btn-sm check-all-submit-btn"disabled>Thực hiện</button>
@@ -138,13 +138,13 @@
 
         checkboxAll.change( function () {
           var isCheckedAll = $(this).prop('checked')
-          courseItemCheckbox.prop('checked', isCheckedAll)
+          usersCheckbox.prop('checked', isCheckedAll)
           renderCheckAllSubmitBtn();
         });
 
         //small checkbox changed
-        courseItemCheckbox.change( function () {
-          var isCheckedAll = courseItemCheckbox.length === $('input[name="userIds[]"]:checked').length;
+        usersCheckbox.change( function () {
+          var isCheckedAll = usersCheckbox.length === $('input[name="userIds[]"]:checked').length;
           checkboxAll.prop('checked',isCheckedAll)
           renderCheckAllSubmitBtn();
         });

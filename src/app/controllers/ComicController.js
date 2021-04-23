@@ -1,4 +1,4 @@
-const Course = require('../models/Course');
+const Comic = require('../models/Comic');
 const Comment = require('../models/Comment');
 const TimeDifferent = require('../../util/timeDiff')
 const { mutipleMongooseToObject } = require('../../util/mongoose');
@@ -10,7 +10,7 @@ const { likedComic } = require('./UserController');
 
 
 
-class CourseController {
+class ComicController {
     //get
         index(req, res, next) {
             var loggedIn = req.user
@@ -22,25 +22,25 @@ class CourseController {
             }
             let page = +req.query.page || 1;
             let PageSize = 2;
-            let skipCourse = (page - 1)*PageSize;
+            let skipComic = (page - 1)*PageSize;
             let nextPage = +page + 1;
             let prevPage = +page - 1;
             let prevPage2 = +page - 2;
-            Course
+            Comic
             .find()
-            .skip(skipCourse)
+            .skip(skipComic)
             .limit(PageSize)
-            .exec((err,courses) => {
-                Course.countDocuments((err, count) => {
+            .exec((err,comics) => {
+                Comic.countDocuments((err, count) => {
                     if (err) return next(err);
-                    res.render('courses',{
+                    res.render('comics',{
                         loggedIn,
                         current: page,
                         nextPage,
                         prevPage,
                         prevPage2,
                         pages: Math.ceil(count/PageSize),
-                        courses: mutipleMongooseToObject(courses),
+                        comics: mutipleMongooseToObject(comics),
                         admin
                     })
 
@@ -53,30 +53,53 @@ class CourseController {
     show(req, res, next) {
         let chapterSlug = req.params.slug
         var loggedIn = req.user
+        
         var admin = false
-        let alreadyLikedComic = false
-        if(loggedIn){
-            if(req.user.role === 'admin'){
-                admin = true
-            }
-            var likedComics = req.user.likedComic
-            likedComics.forEach(element => {
-                console.log(element)
-            })
+        let alreadyFollowComic = false
+        let alreadylikeComic = false
+        let alreadydislikeComic = false
+        if(req.user.role === 'admin'){
+            admin = true
         }
-        Course.findOne({ slug: req.params.slug })
-            .then(course => {
-                if(course){
+        let followComics = req.user.followComics
+        followComics.forEach(element =>{
+            if(element == req.params.slug){
+                alreadyFollowComic = true
+            }
+        })
+        let likeComics = req.user.likeComics
+        likeComics.forEach(element =>{
+            if(element == req.params.slug){
+                alreadylikeComic = true
+            }
+        })
+        let dislikeComics = req.user.dislikeComics
+        dislikeComics.forEach(element =>{
+            if(element == req.params.slug){
+                alreadydislikeComic = true
+            }
+        })
+        
+        Comic.findOne({ slug: req.params.slug })
+            .then(comic => {
+                
+                if(comic){
+                    let likeCounts = comic.likeCounts
+                    let dislikeCounts = comic.dislikeCounts
                     Comment.find({commentSlug: req.params.slug}).sort({createdAt: -1})
                     .then(comments => {
 
-                        // console.log(alreadyLikedComic)
-                        res.render('courses-detail', { 
-                            alreadyLikedComic,
+                        console.log(chapterSlug)
+                        res.render('comic-detail', {
+                            likeCounts,
+                            dislikeCounts,
+                            alreadydislikeComic,
+                            alreadylikeComic,
+                            alreadyFollowComic,
                             comments: mutipleMongooseToObject(comments),
                             chapterSlug,
                             loggedIn,
-                            course: mongooseToObject(course),
+                            comic: mongooseToObject(comic),
                             admin
                         });
                     })
@@ -101,15 +124,18 @@ class CourseController {
     }
     async store(req, res, next) {
         req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
+        req.body.likeCounts = 0
+        req.body.dislikeCounts = 0
         const slug = removeVietnameseTones(req.body.name);
-        const courseExisted = await Course.findOne({slug: slug})
-        if(courseExisted){
+        const comicExisted = await Comic.findOne({slug: slug})
+
+        if(comicExisted){
             console.log('slug existed, add shortId to create new slug');
-            const course = new Course(req.body);
-            course.slug = slug + '-' + shortid.generate();
-            course.save()
+            const comic = new Comic(req.body);
+            comic.slug = slug + '-' + shortid.generate();
+            comic.save()
                 .then(() => {
-                res.status(201).redirect('/me/stored/courses');
+                res.status(201).redirect('/admin/storedComics');
                 })
                 .catch(err => {
                 console.log(err);
@@ -118,12 +144,12 @@ class CourseController {
                 });
             });
         }else{
-            const course = new Course(req.body);
-            course.slug = slug;
+            const comic = new Comic(req.body);
+            comic.slug = slug;
             //save xong rồi redirect qua trang chủ
-            course.save()
+            comic.save()
                 .then(() => {
-                res.status(201).redirect('/me/stored/courses');
+                res.status(201).redirect('/admin/storedComics');
                 })
                 .catch(err => {
                 console.log(err);
@@ -146,11 +172,11 @@ class CourseController {
                 admin = true
             }
         }
-        Course.findById( req.params.id ) 
-            .then(course => {
-                res.render('courses-edit', {
+        Comic.findById( req.params.id ) 
+            .then(comic => {
+                res.render('comic-edit', {
                     loggedIn,
-                    course: mongooseToObject(course),
+                    comic: mongooseToObject(comic),
                     admin
                 })
             })
@@ -160,55 +186,35 @@ class CourseController {
     // PUT /courses/:id
     update(req, res, next) {
         
-        Course.updateOne({ _id: req.params.id}, req.body)
-            .then(() => res.redirect('/me/stored/courses'))
+        Comic.updateOne({ _id: req.params.id}, req.body)
+            .then(() => res.redirect('/admin/storedComics'))
             .catch(next);
     }
 
 
     // delete /course/:id
     destroy(req, res, next) {
-        Course.delete({ _id: req.params.id})
+        Comic.delete({ _id: req.params.id})
             .then(() => res.redirect('back'))
             .catch(next);
     }
 
     // delete /course/:id/force
     forcedestroy(req, res, next) {
-        Course.deleteOne({ _id: req.params.id})
+        Comic.deleteOne({ _id: req.params.id})
             .then(() => res.redirect('back'))
             .catch(next);
     }
 
     // PATCH /courses/:id/restore
     restore(req, res, next) {
-        Course.restore({ _id: req.params.id})
+        Comic.restore({ _id: req.params.id})
             .then(() => res.redirect('back'))
             .catch(next);
     }
 
-    // POST /courses/handle-form-action
-    handleFormAction(req, res, next){
-        switch(req.body.action){
-            case 'delete':
-                Course.delete({ _id: { $in: req.body.courseIds}}) //vi li do minh gui array len nen minh can chuyen no qua dung dang cua trong document
-                    .then(() => res.redirect('back'))
-                    .catch(next);
-                break;
-            case 'delete-forever':
-                Course.deleteMany({ _id: { $in: req.body.courseIds}}) //vi li do minh gui array len nen minh can chuyen no qua dung dang cua trong document
-                    .then(() => res.redirect('back'))
-                    .catch(next);
-                break;
-            case 'restore':
-                Course.restore({ _id: { $in: req.body.courseIds}}) //vi li do minh gui array len nen minh can chuyen no qua dung dang cua trong document
-                    .then(() => res.redirect('back'))
-                    .catch(next);
-                break;
-            default:
-                res.json({message: 'dit me m'})   ; 
-        }
-    }
+    // POST admin/courses/handle-form-action
+    
 }
 
-module.exports = new CourseController();
+module.exports = new ComicController();

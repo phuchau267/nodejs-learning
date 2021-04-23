@@ -1,4 +1,4 @@
-<form name="container-form" class="mt-4" method="POST" action="/users/handle-form-action"></form>
+<form name="container-form" class="mt-4" method="POST" action="/admin/users/handle-form-action">
     <div>
         <h3>tất cả người dùng</h3>
         <a href="/admin/banned">người dùng bị ban({{bannedCount}})</a>
@@ -14,6 +14,8 @@
         </div>
         <select class="form-select checkbox-select-all-options" name="action" aria-label="Default select example" required>
         <option value="">Chọn hành động</option>
+        <option value="addAdmin">them lam admin</option>
+        <option value="delete-forever">xoa vinh vien</option>
         <option value="ban">Ban</option>
         </select>
         <button class="btn btn-primary btn-sm check-all-submit-btn"disabled>Thực hiện</button>

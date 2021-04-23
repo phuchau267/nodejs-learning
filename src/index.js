@@ -35,11 +35,11 @@ app.use(morgan('combined'));
 require('./util/passport')(passport);   
 
 app.use(session({
-    name:'u_',
+    name:'isu',
     secret: 'ancucchothuiquat',
     resave: false,
     saveUninitialized: false,
-    
+    cookie: {maxAge: 3600000 * 24 *365}
     // cookie: { secure: true }
 }))
 
