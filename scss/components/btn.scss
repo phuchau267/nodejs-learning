@@ -1,0 +1,285 @@
+
+.hot-today-container__see-more{
+    font-size: 2rem ;
+    color: #ef5777;
+    padding: .5rem 2rem;
+    background-color: transparent;
+    border: 1px solid #ef5777;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #ef5777;
+    }
+}
+.newest-container__title a:nth-child(1){
+    
+    border-top: 4px solid #ef5777;
+    color: #ef5777;
+}
+.newest-container__title a{
+    font-size: 2rem ;
+    color: #ffffff;
+    padding: 1rem .5rem;
+    background-color: transparent;
+    margin-right: 5rem;
+    transition: all .2s;
+    &:hover{
+        text-decoration: none;
+        border-top: 1px solid #ef5777;
+        color: #ef5777;
+    }
+}
+.followed-container__title a{
+    font-size: 2rem ;
+    color: #ef5777;
+    padding: .5rem 2rem;
+    background-color: transparent;
+    border: 1px solid #ef5777;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #ef5777;
+    }
+}
+.watched-container__title a{
+    font-size: 2rem ;
+    color: #fd4545;
+    padding: .5rem 2rem;
+    background-color: transparent;
+    border: 1px solid #fd4545;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #fd4545;
+    }
+}
+.small-watched-container__title a{
+    font-size: 1.5rem ;
+    color: #fd4545;
+    padding: .5rem 1rem;
+    background-color: transparent;
+    border: 1px solid #fd4545;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #fd4545;
+    }
+}
+.small-followed-container__title a{
+    font-size: 1.5rem ;
+    color: #fd4545;
+    padding: .5rem 1rem;
+    background-color: transparent;
+    border: 1px solid #fd4545;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #fd4545;
+    }
+}
+.followed-comic__follow {
+    padding: .5rem 1rem;
+    border: 1px solid #ef5777;
+    font-size: 1.4rem;
+    color: #ef5777;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #ef5777;
+    }
+}
+.watched-comic__follow {
+    padding: .5rem 1rem;
+    border: 1px solid #ef5777;
+    font-size: 1.4rem;
+    color: #ef5777;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #ef5777;
+    }
+}
+.small-watched-comic__follow {
+    padding: .5rem 1rem;
+    border: 1px solid #ef5777;
+    font-size: 1.2rem;
+    color: #ef5777;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #ef5777;
+    }
+}
+.small-followed-comic__follow {
+    padding: .5rem 1rem;
+    border: 1px solid #ef5777;
+    font-size: 1.2rem;
+    color: #ef5777;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #ef5777;
+    }
+}
+.not-followed{
+    color: #000000;
+    background-color: #ef5777;
+}
+.comic__detail--chapter-first-box{
+    padding-right: .7rem;
+    & a{
+   
+        display: block;
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        background-color: #e91b48;
+        font-size: 2rem;
+        padding: 2rem 0;
+        border-radius: .5rem;
+        
+        transition: all .1s;
+        border: 1px solid #e91b48;
+        
+        &:hover{
+            text-decoration: none;
+            color: #e91b48;
+            background-color: transparent;
+            
+        }
+    }
+}
+.comic__detail--chapter-last-box{
+    padding-left: .7rem;
+    & a{
+   
+        display: block;
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        background-color: #e91b48;
+        font-size: 2rem;
+        padding: 2rem 0;
+        border-radius: .5rem;
+       
+        transition: all .1s;
+        border: 1px solid #e91b48;
+        
+        &:hover{
+            text-decoration: none;
+            color: #e91b48;
+            background-color: transparent;
+            
+        }
+    }
+}
+.sort-submit-btn{
+    font-size: 1.5rem ;
+    color: #fd4545;
+    padding: 0 1rem;
+    margin-left: 1rem;
+    background-color: transparent;
+    border: 1px solid #fd4545;
+    transition: all .1s;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #fd4545;
+    }
+    &:focus{
+        outline: none;
+    }
+}
+#see-more-less__checkbox{
+   display: none;
+    
+}
+#see-more-less__checkbox2{
+   display: none;
+    
+}
+#see-more-less__checkbox3{
+   display: none;
+    
+}
+#see-more-less__checkbox4{
+   display: none;
+    
+}
+.see-more-less__label{
+    cursor: pointer;
+    margin: 1rem 0;
+    font-size: 1.7rem;
+    color: #ef5777;
+    & .show-more-label{
+        display: none;
+    }
+    & i{
+        transition: all .2s;
+    }
+}
+.see-more-less__label2{
+    cursor: pointer;
+    margin: 1rem 0;
+    font-size: 1.7rem;
+    color: #ef5777;
+    & .show-more-label{
+        display: none;
+    }
+    & i{
+        transition: all .2s;
+    }
+}
+.see-more-less__label3{
+    cursor: pointer;
+    margin: 1rem 0;
+    font-size: 1.7rem;
+    color: #ef5777;
+    & .show-more-label{
+        display: none;
+    }
+    & i{
+        transition: all .2s;
+    }
+}
+.see-more-less__label4{
+    cursor: pointer;
+    margin: 1rem 0;
+    font-size: 1.7rem;
+    color: #ef5777;
+    & .show-more-label{
+        display: none;
+    }
+    & i{
+        transition: all .2s;
+    }
+}
+.less-label{
+    & i{
+        transform: rotate(180deg);
+    }
+    & .show-more-label{
+        display: unset;
+    }
+    & .show-less-label{
+        display: none;
+    }
+}
+.show-less-more-label-hover:hover{
+    border-radius: 1rem;
+    background-color: rgba(white,.1);
+    padding: .3rem 5rem;
+}
+.show-less-more-label-hover{
+    transition: all .2s;
+    padding: .3rem 5rem;
+}

@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+:root{
+    
+}
+body{
+    color: white;
+    background-color: #1b191b;
+}
+html{
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+}
+body::-webkit-scrollbar {
+    width: 1.6rem;
+    
+}
+   
+body::-webkit-scrollbar-track {
+    
+    
+}
+   
+body::-webkit-scrollbar-thumb {
+    background-color: #ef5777;
+    border-radius: 1rem;
+    border: .4rem solid transparent;
+    background-clip: padding-box;
+    &:hover{
+        background-color: #eb1140;
+    }
+}

@@ -1,0 +1,286 @@
+
+.hot-today-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ef5777;
+    
+    &__title {
+        color: #ffffff;
+        
+        & h1{
+            display: inline;
+            font-size: 3rem ;
+            font-weight: 500;
+        }
+        & h2{
+            display: inline;
+            font-size: 3rem ;
+            font-weight: 500;
+        }
+    }
+    
+}
+.newest-container{
+    
+    &__comic{
+        background-color: #232223;
+        
+    }
+    &__title {
+        margin-top: 1.3rem;
+        padding: 0 2.7rem;
+        
+    }
+    
+}
+.followed-container{
+    
+    &__title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #ef5777;
+        
+        & h2{
+            font-size: 3rem;
+            color: #ffffff;
+        }  
+        
+        
+        
+    }
+    
+}
+.watched-container{
+    
+    &__title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #ef5777;
+        
+        & h2{
+            font-size: 3rem;
+            color: #ffffff;
+        }  
+        
+        
+        
+    }
+    
+}
+.small-watched-container{
+    
+    &__title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #ef5777;
+        
+        & h2{
+            font-size: 2.5rem;
+            color: #ffffff;
+        }  
+        
+        
+        
+    }
+    
+}
+.small-followed-container{
+    
+    &__title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #ef5777;
+        
+        & h2{
+            font-size: 2.5rem;
+            color: #ffffff;
+        }  
+        
+        
+        
+    }
+    
+}
+.newest-followed-container{
+    margin-top: 10rem;
+}
+.all-comic{
+    &__sorted-container--title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ef5777;
+        padding-bottom: 1rem;
+        & h2{
+            font-size: 2.5rem;
+        }
+    }
+    &__sort{
+        
+        &--container{
+            position: relative;
+            
+        }
+        &--button{
+            font-size: 1.5rem ;
+            color: #ffffff;
+            padding: .5rem 1rem;
+            margin-left: 1rem;
+            background-color: #424242;
+            border: 1px solid #585858;
+            transition: all .1s;
+            &:hover{
+                text-decoration: none;
+                background-color: #2c2b2c;
+                
+            }
+            &:focus{
+                outline: none;
+            }
+            & i {
+                margin-left: .5rem;
+            }
+            
+        }
+        &--item{
+            &-container{
+                position: absolute;
+                right: 0;
+                background-color: #2c2b2c;
+                border: 1px solid #424242;
+                text-align: center;
+                padding: 1rem;
+                display: none;
+                z-index: 3;
+                width: 40rem;
+            }
+            &-box{
+                
+            }
+            &-title{
+                display: inline-block;
+                font-size: 2rem;
+                margin: 1rem 0;
+            }
+            &-list{
+                display: flex;
+            }
+        }
+    }
+}
+.open-menu{
+    display: block;
+}
+#sort-menu{
+    
+}
+.button-background{
+    background-color: #2c2b2c;
+}
+.sort-checkbox__label{
+    display: flex;
+    align-items: center;
+    background-color: #2c2b2c;
+    padding: .7rem 1.5rem;
+    border: 1px solid #424242;
+    font-size: 1.7rem;
+    
+    &--arrow{
+        margin-left: 1rem;
+    }
+}
+.option{
+    background: #424242;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+    margin: 10px 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    padding:.5rem   1rem;
+    
+    transition: all 0.1s ease;
+  }
+  .dot{
+    height: 15px;
+    width: 15px;
+    background: #585858;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 1rem;
+    &::before{
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        background: #ef5777;
+        border-radius: 50%;
+        opacity: 0;
+        
+        transition: all 0.3s ease;
+      }
+  }
+  input[type="radio"]{
+    display: none;
+  }
+  #option-1:checked:checked ~ .option-1,
+  #option-2:checked:checked ~ .option-2,
+  #option-3:checked:checked ~ .option-3,
+  #option-4:checked:checked ~ .option-4,
+  #option-5:checked:checked ~ .option-5,
+  #option-6:checked:checked ~ .option-6,
+  #option-7:checked:checked ~ .option-7,
+  #option-8:checked:checked ~ .option-8{
+    
+    background: #ef5777;
+  }
+  #option-1:checked:checked ~ .option-1 .dot,
+  #option-2:checked:checked ~ .option-2 .dot,
+  #option-3:checked:checked ~ .option-3 .dot,
+  #option-4:checked:checked ~ .option-4 .dot,
+  #option-5:checked:checked ~ .option-5 .dot,
+  #option-6:checked:checked ~ .option-6 .dot,
+  #option-7:checked:checked ~ .option-7 .dot,
+  #option-8:checked:checked ~ .option-8 .dot{
+    
+  }
+  #option-1:checked:checked ~ .option-1 .dot::before,
+  #option-2:checked:checked ~ .option-2 .dot::before,
+  #option-3:checked:checked ~ .option-3 .dot::before,
+  #option-4:checked:checked ~ .option-4 .dot::before,
+  #option-5:checked:checked ~ .option-5 .dot::before,
+  #option-6:checked:checked ~ .option-6 .dot::before,
+  #option-7:checked:checked ~ .option-7 .dot::before,
+  #option-8:checked:checked ~ .option-8 .dot::before{
+    opacity: 1;
+    transform: scale(.6);
+  }
+  .option span{
+    font-size: 1.5rem;
+    color: #d9d9d9;
+  }
+  #option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span,
+#option-3:checked:checked ~ .option-3 span,
+#option-4:checked:checked ~ .option-4 span,
+#option-5:checked:checked ~ .option-5 span,
+#option-6:checked:checked ~ .option-6 span,
+#option-7:checked:checked ~ .option-7 span,
+#option-8:checked:checked ~ .option-8 span{
+  color: #fff;
+}

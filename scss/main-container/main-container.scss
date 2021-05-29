@@ -1,0 +1,44 @@
+.main-container{
+    width: 80%;
+    margin: 15rem auto;
+    background-color: transparent;
+    
+}
+.all-comic-main-container{
+    width: 80%;
+    margin: 15rem auto;
+    background-color: transparent;
+}
+.less-container{
+   
+        height: 12% !important;
+        opacity: 1;
+        overflow:hidden;
+        box-shadow: inset 0 -45px 20px -10px #111111;
+        transition: all .2s;
+   
+    
+    & .followed-comic:nth-child(2){
+        opacity: .1;
+    }
+    & .watched-comic:nth-child(2){
+        opacity: .1;
+    }
+}
+.small-less-container{
+   
+    height: 8% !important;
+    opacity: 1;
+    overflow:hidden;
+    box-shadow: inset 0 -45px 20px -10px #111111;
+    transition: all .2s;
+
+
+& .small-followed-comic:nth-child(2){
+    opacity: .1;
+}
+& .small-watched-comic:nth-child(2){
+    opacity: .1;
+}
+}
+
