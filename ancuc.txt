@@ -1,0 +1,1212 @@
+ <div class="nav-bar">
+        <div class="nav-bar__top" id="nav-bar__top">
+            <a href="#">Truyện đã theo dõi</a>
+            <a href="#">Truyện vừa xem</a>
+        </div>
+        <div class="nav-bar__bottom" id="nav-bar__bottom">
+            <a class="main-logo" href="index.html">
+                LOGO
+            </a>
+            <form class="nav-bar__search-container">
+                <button class="search-icon-box" type="submit">
+                    <i class="fal fa-search search-icon"></i>
+                </button>
+                <div class="search-box">
+                    <input class="search-box__input" type="text" placeholder="tim kiem tên truyện, tác giả">
+                </div>
+
+            </form>
+            <div class="nav-bar__bottom--category">
+                <div class="see-more-category">
+                    <span class="see-more-category-hover">Thể loại <i class="fal fa-caret-down"></i></span>
+                    <div class="see-more-container">
+                        <div class="row see-more-container-small">
+                            <div class="col-12 see-more-category-all-link">
+                                <a href="#">Tất cả thể loại</a>
+                            </div>
+                            <div class="col" style="text-align: center;">
+                                <a href="#" class="see-more-category-link">Action</a><br>
+                                <a href="#" class="see-more-category-link">Adult</a><br>
+                                <a href="#" class="see-more-category-link">Adventure</a> <br>
+                                <a href="#" class="see-more-category-link">Chuyển Sinh</a><br>
+                                <a href="#" class="see-more-category-link">Comedy</a><br>
+                                <a href="#" class="see-more-category-link">Cooking</a><br>
+                                <a href="#" class="see-more-category-link">Cổ Đại</a><br>
+                                
+                                
+                            </div>
+                            <div class="col" style="text-align: center;">
+                                <a href="#" class="see-more-category-link">Doujinshi</a><br>
+                                <a href="#" class="see-more-category-link">Drama</a><br>
+                                <a href="#" class="see-more-category-link">Đam Mỹ</a><br>
+                                <a href="#" class="see-more-category-link">Ecchi</a><br>
+                                <a href="#" class="see-more-category-link">Fantasy</a><br>
+                                <a href="#" class="see-more-category-link">Gender Bender</a><br>
+                                <a href="#" class="see-more-category-link">Harem</a><br>
+                                
+                                
+                            </div>
+                            <div class="col" style="text-align: center;">
+                                <a href="#" class="see-more-category-link">Horror</a><br>
+                                <a href="#" class="see-more-category-link">Historical</a><br>
+                                <a href="#" class="see-more-category-link">Josei</a><br>
+                                <a href="#" class="see-more-category-link">Live Action</a><br>
+                                <a href="#" class="see-more-category-link">Trinh Thám</a><br>
+                                <a href="#" class="see-more-category-link">Manhwa</a><br>
+                                <a href="#" class="see-more-category-link">Manhua</a><br>
+                                
+                                
+                            </div>
+                            <div class="col" style="text-align: center;">
+                                <a href="#" class="see-more-category-link">Manga</a><br>
+                                <a href="#" class="see-more-category-link">Martial Arts</a><br>
+                                <a href="#" class="see-more-category-link">Mature</a><br>
+                                <a href="#" class="see-more-category-link">Mecha</a><br>
+                                <a href="#" class="see-more-category-link">Mystery</a><br>
+                                <a href="#" class="see-more-category-link">Ngôn Tình</a><br>
+                                <a href="#" class="see-more-category-link">One Shot</a><br>
+                                
+                            </div>
+                            <div class="col" style="text-align: center;">
+                                <a href="#" class="see-more-category-link">Psychological</a><br>
+                                <a href="#" class="see-more-category-link">Romance</a><br>
+                                <a href="#" class="see-more-category-link">School Life</a><br>
+                                <a href="#" class="see-more-category-link">Sci-fi</a><br>
+                                <a href="#" class="see-more-category-link">Seinen</a><br>
+                                <a href="#" class="see-more-category-link">Shoujo</a><br>
+                                <a href="#" class="see-more-category-link">Shoujo Ai</a><br>
+                                
+                            </div>
+                            <div class="col" style="text-align: center;">
+                                <a href="#" class="see-more-category-link">Shounen</a><br>
+                                <a href="#" class="see-more-category-link">Shounen Ai</a><br>
+                                <a href="#" class="see-more-category-link">Slice of Life</a><br>
+                                <a href="#" class="see-more-category-link">Smut</a><br>
+                                <a href="#" class="see-more-category-link">Soft Yaoi</a><br>
+                                <a href="#" class="see-more-category-link">Soft Yuri</a><br>
+                                <a href="#" class="see-more-category-link">Sports</a><br>
+                                
+                            </div>
+                            <div class="col" style="text-align: center;">
+                                <a href="#" class="see-more-category-link">Supernatural</a><br>
+                                <a href="#" class="see-more-category-link">Thiếu Nhi</a><br>
+                                <a href="#" class="see-more-category-link">Tragedy</a><br>
+                                <a href="#" class="see-more-category-link">Truyện Scan</a><br>
+                                <a href="#" class="see-more-category-link">Truyện Màu</a><br>
+                                <a href="#" class="see-more-category-link">Webtoon</a><br>
+                                <a href="#" class="see-more-category-link">Xuyên Không</a><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="nav-bar__user-box">
+                <div class="user_logged_in">
+                    <img class="user_avatar" src="124153613_714568572486006_7702976515048217928_n.jpg" alt="avatar">
+                    <span class="user_name">Hậu Trần</span>
+                    <i class="fal fa-caret-down user-arrow-down"></i>
+                </div>
+                <ul class="nav-bar__user-box--menu">
+                    <li class="user-box--menu-item"><a style="color: black; padding: 1rem 1rem; display: block;"
+                            href="#">asdasd</a></li>
+                    <li class="user-box--menu-item"><a style="color: black; padding: 1rem 1rem; display: block;"
+                            href="#">asdasd</a></li>
+                    <li class="user-box--menu-item"><a style="color: black; padding: 1rem 1rem; display: block;"
+                            href="#">asdasd</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="nav-bar__tablet">
+            <div class="nav-bar__tablet--left">
+                <input type="checkbox" name="" id="nav-bar__tablet--checkbox">
+            <label class="nav-bar__tablet--label" for="nav-bar__tablet--checkbox">
+                <span class="nav-bar__tablet--icon nav-bar__tablet--icon1">&nbsp;</span>
+                <span class="nav-bar__tablet--icon nav-bar__tablet--icon2">&nbsp;</span>
+                <span class="nav-bar__tablet--icon nav-bar__tablet--icon3">&nbsp;</span>
+                <span class="nav-bar__tablet--icon nav-bar__tablet--icon4">&nbsp;</span>
+            </label>
+            <div class="nav-bar__tablet--menu-container">
+                <div class="nav-bar__tablet--menu-user-box">
+                    <div class="nav-bar__tablet--menu-user">
+                        <img src="/img/3f346e910be0af66a7ceb00a09c44917.jpg" alt="">
+                        <span>Đức Huy</span>
+                    </div>
+                    <a class="nav-bar__tablet--menu-user-logout" href="#">Đăng xuất</a>
+                </div>
+                <form class="nav-bar__search-container">
+                    <button class="search-icon-box" type="submit">
+                        <i class="fal fa-search search-icon"></i>
+                    </button>
+                    <div class="search-box">
+                        <input class="search-box__input" type="text" placeholder="tim kiem tên truyện, tác giả">
+                    </div>
+    
+                </form>
+                <a class="nav-bar__tablet--menu-item" href="#"><i class="fal fa-book-open"></i> Danh sách truyện</a>
+                <a class="nav-bar__tablet--menu-item" href="#"><i class="fal fa-history"></i> Truyện vừa xem</a>
+                <a class="nav-bar__tablet--menu-item" href="#"><i class="fal fa-book-heart"></i> Truyện đã theo dõi</a>
+                <div class="nav-bar__tablet--menu-category">
+                    <input type="checkbox" name="" id="nav-bar__tablet--menu-category-checkbox">
+                    <label class="nav-bar__tablet--menu-category-label" for="nav-bar__tablet--menu-category-checkbox">
+                        <span>Thể loại</span> <i class="fal fa-angle-down"></i>
+                    </label>
+                    <div class="tablet-category__container">
+                        <div class="tablet-category__container--small">
+                            <div class="see-more-category-all-link">
+                                <a href="#">Tất cả thể loại</a>
+                            </div>
+                            <a href="#" class="see-more-category-link">Action</a><br>
+                            <a href="#" class="see-more-category-link">Adult</a><br>
+                            <a href="#" class="see-more-category-link">Adventure</a> <br>
+                            <a href="#" class="see-more-category-link">Chuyển Sinh</a><br>
+                            <a href="#" class="see-more-category-link">Comedy</a><br>
+                            <a href="#" class="see-more-category-link">Cooking</a><br>
+                            <a href="#" class="see-more-category-link">Cổ Đại</a><br>
+                            <a href="#" class="see-more-category-link">Doujinshi</a><br>
+                            <a href="#" class="see-more-category-link">Drama</a><br>
+                            <a href="#" class="see-more-category-link">Đam Mỹ</a><br>
+                            <a href="#" class="see-more-category-link">Ecchi</a><br>
+                            <a href="#" class="see-more-category-link">Fantasy</a><br>
+                            <a href="#" class="see-more-category-link">Gender Bender</a><br>
+                            <a href="#" class="see-more-category-link">Harem</a><br>
+                            <a href="#" class="see-more-category-link">Horror</a><br>
+                                    <a href="#" class="see-more-category-link">Historical</a><br>
+                                    <a href="#" class="see-more-category-link">Josei</a><br>
+                                    <a href="#" class="see-more-category-link">Live Action</a><br>
+                                    <a href="#" class="see-more-category-link">Trinh Thám</a><br>
+                                    <a href="#" class="see-more-category-link">Manhwa</a><br>
+                                    <a href="#" class="see-more-category-link">Manhua</a><br>  
+                                    <a href="#" class="see-more-category-link">Manga</a><br>
+                                    <a href="#" class="see-more-category-link">Martial Arts</a><br>
+                                    <a href="#" class="see-more-category-link">Mature</a><br>
+                                    <a href="#" class="see-more-category-link">Mecha</a><br>
+                                    <a href="#" class="see-more-category-link">Mystery</a><br>
+                                    <a href="#" class="see-more-category-link">Ngôn Tình</a><br>
+                                    <a href="#" class="see-more-category-link">One Shot</a><br> 
+                                    <a href="#" class="see-more-category-link">Psychological</a><br>
+                                    <a href="#" class="see-more-category-link">Romance</a><br>
+                                    <a href="#" class="see-more-category-link">School Life</a><br>
+                                    <a href="#" class="see-more-category-link">Sci-fi</a><br>
+                                    <a href="#" class="see-more-category-link">Seinen</a><br>
+                                    <a href="#" class="see-more-category-link">Shoujo</a><br>
+                                    <a href="#" class="see-more-category-link">Shoujo Ai</a><br>  
+                                    <a href="#" class="see-more-category-link">Shounen</a><br>
+                                    <a href="#" class="see-more-category-link">Shounen Ai</a><br>
+                                    <a href="#" class="see-more-category-link">Slice of Life</a><br>
+                                    <a href="#" class="see-more-category-link">Smut</a><br>
+                                    <a href="#" class="see-more-category-link">Soft Yaoi</a><br>
+                                    <a href="#" class="see-more-category-link">Soft Yuri</a><br>
+                                    <a href="#" class="see-more-category-link">Sports</a><br>  
+                                    <a href="#" class="see-more-category-link">Supernatural</a><br>
+                                    <a href="#" class="see-more-category-link">Thiếu Nhi</a><br>
+                                    <a href="#" class="see-more-category-link">Tragedy</a><br>
+                                    <a href="#" class="see-more-category-link">Truyện Scan</a><br>
+                                    <a href="#" class="see-more-category-link">Truyện Màu</a><br>
+                                    <a href="#" class="see-more-category-link">Webtoon</a><br>
+                                    <a href="#" class="see-more-category-link">Xuyên Không</a><br> 
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <a class="main-logo" href="index.html">
+                LOGO
+            </a>
+            </div>
+            
+            <div class="nav-bar__tablet--menu-user">
+                <img src="/img/3f346e910be0af66a7ceb00a09c44917.jpg" alt="">
+                <span>Đức Huy</span>
+            </div>
+        </div>
+
+    </div>
+ <div class="hot-today-container">
+            <div class="hot-today-container__title--box">
+                <div class="hot-today-container__title">
+                    <h1>Truyện Tranh </h1>
+                    <h2>Đề Cử</h2>
+                </div>
+    
+                <a href="all-comics.html" class="hot-today-container__see-more">Xem tất cả</a>
+    
+            </div>
+            <div class="swiper-container mySwiper hot-today-swiper">
+                
+                <div class="swiper-wrapper hot-today-swiper-wrapper">
+                    <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="swiper-slide col-xs-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="row hot-comic">
+                            <a href="comic-detail.html" class="hot-comic__img--box col-5">
+                                <img width="128" height="180" class="hot-comic__img" src="/img/original.jpg" alt="">
+                            </a>
+                            <div class="hot-comic__info col-7">
+                                <a href="#" class="hot-comic__title"><h3>Đây Là Tên Truyện Dài Thoòng Loòng Ngoằn Nghèo để làm 3 chấm</h3></a>
+                                <span class="hot-comic__date">30 Tháng 8 2022</span>
+                                <div class="hot-comic__newest--chapter-box">
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                    <br>
+                                    <a href="#" class="hot-comic__newest--chapter">Chapter 25</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+                <div class="swiper-button-next swiper-button-next-custom"></div>
+                <div class="swiper-button-prev swiper-button-prev-custom"></div>
+                <div class="swiper-pagination swiper-pagination-custom"></div>
+            </div>
+            
+        </div>
+
+
+
+/////////////////////////////////CSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS//////////////////////////////
+@import "../include-thing/mixin.scss";
+.sticky-nav{
+    position: fixed !important;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.main-logo{
+    font-size: 2rem;
+    color: #ef5777;
+    @include respond(phone){
+        font-size: 1.5rem;
+    }
+    @include respond(tablet){
+        font-size: 2rem;
+    }
+}
+.nav-bar{
+    background-color: #0B090A;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    &__top{
+        
+        align-items: center;
+        padding: 1rem 10rem;
+        justify-content: space-between;
+        background-color: #0B090A;
+        
+        @include respond(phone){
+            display: none;
+            
+        }
+        @include respond(tablet){
+            display: none;
+            
+        }
+        @include respond(pc){
+            display: flex;
+            
+        }
+        @include respond(big-pc){
+            padding: 1rem 20rem;
+         }
+        
+        
+        border-bottom: 1px solid #696868;
+        & a{
+           font-size: 1.5rem;
+           color: #ffffff;
+            }
+    }
+    &__bottom{
+        
+  
+        border-bottom: 1px solid #696868;
+        background-color: #0B090A;
+        
+        position: relative;
+        
+        align-items: center;
+        justify-content: space-between;
+        @include respond(phone){
+            display: none;
+            
+        }
+        @include respond(tablet){
+            display: none;
+            
+        }
+        @include respond(pc){
+            display: flex;
+            padding: 1rem 5rem;
+        }
+        @include respond(big-pc){
+            padding: 1rem 10rem;
+         }
+        
+    }
+    
+    &__search-container{
+        display: flex; 
+        border: 1px solid #696868;
+        align-items: center;
+        border-radius: 2rem;
+        @include respond(phone){
+            margin: 1rem 0;
+            
+        }
+        @include respond(tablet){
+            margin: 1rem 0;
+            
+        }
+        @include respond(pc){
+            margin: 0;
+            
+        }
+        
+    }
+    &__user-box{
+        position: relative;
+        cursor: pointer;
+        
+        &:hover>&--menu{
+            padding-top: 1.3rem;
+            opacity: 1;
+            visibility: visible;
+        }
+        &--menu{
+            position: absolute;
+            background-color: transparent;
+            display: block;
+            width: 100%;
+            padding-top: 0rem;
+            transition: all .2s;
+            opacity: 0;
+            visibility: hidden;
+            
+        }
+    }
+}
+.search{
+    &-icon{
+        font-size: 1.5rem;
+        color: white;
+        
+        
+        &-box{
+            
+            
+            background-color: transparent;
+            border-right: 1px solid #4E4E50;
+            padding-left: .3rem;
+            border-top:none ;
+            border-left:none ;
+            border-bottom:none ;
+            width: 4rem;
+            height: 3rem;
+           &:focus{
+               outline: none;
+           }
+        }
+    }
+    &-box{
+        
+        
+        &__input{
+            
+            height: 100%;
+            font-size: 1.5rem;
+            padding: 1rem 1.5rem;
+            background-color: transparent;
+            color: #f3f3f3  ;
+            border: none;
+            transition: all .2s;
+            
+            @include respond(tablet){
+                width: 100%;
+                
+                
+            }
+            @include respond(pc){
+                width: 9rem;
+                
+                
+            }
+            &:focus{
+                outline: none;
+                
+                @include respond(tablet){
+                    width: 100%;
+                    
+                    
+                }
+                @include respond(pc){
+                    width: 30rem;
+                    
+                    
+                }
+            }
+        }
+    }
+}
+.user{
+    &_logged_in{
+        display: flex;
+        align-items: center;
+        
+    }
+    &_avatar{
+        width: 4.5rem;
+        border-radius: 50%;
+        
+    }
+    &_name{
+        font-size: 1.7rem;
+        color: white;
+        margin: 0 1rem;
+    }
+    &-box--menu-item{
+        list-style: none;
+        background-color: white;
+        font-size: 1.6rem;
+        border-bottom: 1px solid #C5C6C7;
+        
+    }
+}
+.user-arrow-down{
+    color: white;
+    font-size: 1.5rem;
+}
+.see-more{
+    &-category{
+        
+        font-size: 1.7rem;
+            &:hover .see-more-container{
+                opacity: 1;
+                padding-top: 2.3rem;
+                visibility: visible;
+                
+            }
+        
+            &-hover{
+                color: #D3D3D3;
+                cursor: pointer;
+                transition: all .2s;
+            }
+            &:after{
+                content: "";
+                display: block;
+                height: 1px;
+                width: 0%;
+                margin: 0 auto;
+                background-color: white;
+                transform: translateY(.2rem);
+                transition: all .2s;
+                
+            }
+            &:hover.see-more-category:after{
+                width: 100%;
+                
+            }
+            &:hover .see-more-category-hover{
+                color:#ffffff;
+                text-decoration: none;
+            }
+            
+        &-all-link{
+            
+            @include respond(tablet){
+                margin: 1rem 0;
+                text-align: left;
+            }
+            @include respond(pc){
+               
+                text-align: center;
+            }
+            
+            & a{
+                color: #ef5777;
+                font-size: 2rem;
+                
+                @include respond(tablet){
+                    
+                    font-size: 1.8rem;
+                    
+                }
+                
+                &:hover{
+                    color: white;
+                    text-decoration: none;
+                    
+                }
+            }
+            
+            
+        }
+        &-link{
+            display: inline-block;
+            margin: 1rem 0;
+            font-size: 1.5rem;
+            color: #c4c1c1;
+            
+            @include respond(tablet){
+               
+                margin: 1rem 0;
+            }
+            &:hover{
+                color: white;
+                text-decoration: none;
+                
+            }
+        }
+    }
+    &-container{
+        position: absolute;
+        left: 0;
+        top: 4rem;
+        width: 100%;
+        
+        background-color: transparent;
+        display: inline-block;
+        overflow-x: hidden;
+        opacity: 0;
+        
+        visibility: hidden;
+        transition:  all .2s;
+      
+        
+        z-index: 9;
+        
+        
+        &-small{
+            background-color: #1a1a1a;
+            padding: 2rem 4rem;
+            border-bottom: 2px solid #0B090A;
+            
+          
+        }
+    }
+}
+#nav-bar__tablet--checkbox{
+    display: none;
+
+    &:checked~.nav-bar__tablet--label .nav-bar__tablet--icon1{
+        top: 50%;
+        opacity: 0;
+        
+    }
+    &:checked~.nav-bar__tablet--label .nav-bar__tablet--icon2{
+        transform: rotate(45deg);
+       
+
+    }
+    &:checked~.nav-bar__tablet--label .nav-bar__tablet--icon3{
+        transform: rotate(-45deg);
+
+    }
+    &:checked~.nav-bar__tablet--label .nav-bar__tablet--icon4{
+        top: 50%;
+        opacity: 0;
+
+    }
+    &:checked~.nav-bar__tablet--menu-container{
+        left: 0;
+    }
+}
+#nav-bar__tablet--menu-category-checkbox{
+    display: none;
+    &:checked~.tablet-category__container .tablet-category__container--small{
+       transform: translateY(0%);
+    }
+}
+.tablet-category__container{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    
+    &--small{
+        transition: all .2s;
+        transform: translateY(-100%);
+    }
+}
+.nav-bar__tablet{
+    width: 100%;
+    position: fixed;
+    border-bottom: 1px solid #696868;
+   
+    background-color: black;
+    @include respond(phone){
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        
+    }
+    
+    @include respond(tablet){
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 4rem;
+    }
+    @include respond(pc){
+        display: none;
+    }
+    &--left{
+        display: flex;
+        align-items: center;
+    }
+    &--menu{
+        &-container{
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            left: -100%;
+            top:100%;
+            background-color: #0B090A;
+            padding: 2rem;
+            border-top: 1px solid #696868;
+            
+            transition: all .2s;
+        }
+        
+        
+        &-user{
+            
+            display: flex;
+            align-items: center;
+            
+            &-box{
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #696868;
+                padding-bottom: 1rem;
+                justify-content: space-between;
+            }
+            & img{
+                
+                border-radius: 50%;
+                margin-right: 1rem;
+                @include respond(phone){
+                    
+                    width: 2.5rem;
+                    height: 2.5rem;
+                }
+                @include respond(tablet){
+                   
+                    width: 2.8rem;
+                    height: 2.8rem;
+                }
+            }
+            & span{
+                font-size: 1.8rem;
+                @include respond(phone){
+                    font-size: 1.4rem;
+                    
+                }
+                @include respond(tablet){
+                    font-size: 1.6rem;
+                    
+                }
+            }
+            &-logout{
+                
+                
+                color: #ef5777;
+                @include respond(phone){
+                    font-size: 1.4rem;
+                    
+                }
+                @include respond(tablet){
+                    font-size: 1.4rem;
+                    
+                }
+            }
+        }
+        &-category{
+            display: flex;
+            flex-direction: column;
+            margin: 1rem 0;
+            
+            &-label{
+                font-size: 1.8rem;
+            }
+            
+        }
+        &-item{
+            margin: 1rem 0;
+            font-size: 1.8rem;
+            color: white;
+            
+        }
+    }
+    &--label{
+        position: relative;
+        display: none;
+        margin-bottom: 0;
+        @include respond(phone){
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 2rem;
+        }
+        
+        @include respond(tablet){
+            display: inline-block;
+            width: 1.8rem;
+            height: 1.8rem;
+            margin-right: 2rem;
+        }
+        
+        background-color: transparent;
+    }
+    &--icon{
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: white;
+        &1{
+            top: 0;
+            transition: all .2s;
+        }
+        &2{
+            top: 50%;
+            transition: all .2s;
+        }
+        &3{
+            top: 50%;
+            transition: all .2s;
+        }
+        &4{
+            top: 100%;
+            transition: all .2s;
+        }
+    }
+}
+
+///////////////////
+
+.hot-comic{
+    margin-top: 3rem;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    &__img--box{
+        position: relative;
+        overflow: hidden;
+       padding: 0;
+        
+        &:hover img{
+           transform: scale(1.1);
+        }
+        
+    }
+    &__info{
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        
+        background-color: #202020;
+        @include respond(phone){
+            padding: .5rem 1rem;
+        }
+        @include respond(pc){
+            padding: 0rem 1rem;
+        }
+    }
+    &__date{
+        display: inline-block;
+      
+        font-size: 1.3rem;
+        color: #9c9c9c;
+    }
+    
+    &:hover{
+        text-decoration: none;
+        
+    }   
+    &__img{
+        width: 100%;
+        height: auto;
+        
+        transition: all .2s;
+    }
+    
+    &__newest--chapter{
+        font-size: 1.5rem;
+        color: #ef5777;
+        
+        border-radius: 3rem;
+        transition: all .2s;
+        margin-top: 1rem;
+        display: inline-block;
+        @include respond(phone){
+            font-size: 1.2rem;
+            
+        }
+        @include respond(pc){
+            font-size: 1.3rem;
+           
+        }
+        &:hover{
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ef5777;
+        }
+        
+        &-box{
+            
+            text-align: left;
+            
+        }
+    }
+    
+    
+    &__title {
+        
+      
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        color: #c4c1c1;
+        
+        & h3{
+            line-height: 2.5rem;
+            font-size: 1.5rem;
+            
+        }
+        &:hover{
+            color: #ef5777;
+        }
+    }
+    
+    
+    
+}
+.hot-today-container{
+    
+    
+    
+    
+    &__title {
+        color: #ffffff;
+        
+        & h1{
+            display: inline;
+            font-size: 3rem ;
+            font-weight: 500;
+            @include respond(phone){
+                font-size: 2rem;
+                
+            }
+        }
+        & h2{
+            display: inline;
+            font-size: 3rem ;
+            font-weight: 500;
+            @include respond(phone){
+                font-size: 2rem;
+                
+            }
+        }
+        &--box{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ef5777;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+            @include respond(phone){
+                padding-left: 0rem;
+                padding-right: 0rem;
+                
+            }
+        }
+    }
+    
+}
+
+//////////////////////csssssssssssss swiperrrrrrrrrrrrrrrrrrrrrrrrrr
+.swiper-button-next-custom{
+    
+    color: #ef5777;
+   
+    
+    transition: all .2s;
+    height: auto;
+    border: 1px solid #ef5777;
+    width: auto;
+    @include respond(phone){
+        padding:1rem;
+        top: 10%;
+        right: 38% ;
+    }
+    @include respond(tablet){
+        padding:1.3rem;
+        top: 10%;
+        right: 3%;
+        
+       
+    }
+    @include respond(pc){
+        padding:1.3rem;
+        top: 10%;
+        right: 2% ;
+    }
+    
+    &::after{
+        font-size: 1.5rem; 
+        
+    }
+    &:hover{
+        background-color: rgba(255, 255, 255,.1);
+    }
+}
+.swiper-button-prev-custom{
+    
+    
+    left: auto;
+    
+    color: #ef5777;
+    border: 1px solid #ef5777;
+    transition: all .2s;
+    height: auto;
+    width: auto;
+    @include respond(phone){
+        padding:1rem;
+        top: 10%;
+        right: 52% ;
+    }
+    @include respond(tablet){
+        padding:1.3rem;
+        top: 10%;
+        right: 10% ;
+    }
+    @include respond(pc){
+        padding:1.3rem;
+        top: 10%;
+        right: 8% ;
+    }
+    
+    &::after{
+       font-size :1.5rem; 
+       
+    }
+    &:hover{
+        background-color: rgba(255, 255, 255,.1);
+    }
+}
+.hot-today-swiper-wrapper{
+    margin-bottom: 4rem;
+    @include respond(phone){
+        margin-top: 4rem;
+        
+    }
+    @include respond(tablet){
+        margin-top: 5rem;
+        
+    }
+    @include respond(pc){
+        margin-top: 3rem;
+        
+    }
+}
+.hot-today-swiper{
+    
+    @include respond(pc){
+        padding-top: 1rem;
+    }
+}
+.swiper-pagination-custom{
+    bottom: 0;
+
+    & .swiper-pagination-bullet{
+        width: 1.2rem;
+        height: 1.2rem;
+        background: #6b6b6b;
+        &-active{
+            background: #ef5777;
+        }
+    }
+    
+}
+.hot-today-container__see-more{
+    font-size: 2rem ;
+    color: #ef5777;
+    padding: .5rem 2rem;
+    background-color: transparent;
+    border: 1px solid #ef5777;
+    transition: all .1s;
+    @include respond(phone){
+        font-size: 1.5rem;
+        padding: .5rem 1rem;
+    }
+    &:hover{
+        text-decoration: none;
+        background-color: rgba($color: #ffffff, $alpha: .1);
+        color: #ef5777;
+    }
+}
