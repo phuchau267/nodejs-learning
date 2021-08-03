@@ -1,0 +1,120 @@
+<div class="alert-container">
+  {{#ifCond username '==' 0}}
+  <div class="alert alert-danger" role="alert">
+    ban chua nhap tai khoan
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond password '==' 0}}
+  <div class="alert alert-danger" role="alert">
+    ban chua nhap mat khau
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond wrongPassword '==' true}}
+  <div class="alert alert-danger" role="alert">
+    mat khau sai
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond wrongUsername '==' true}}
+  <div class="alert alert-danger" role="alert">
+    khong tim thay ten tai khoan nay
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond registerUsername '==' 0}}
+  <div class="alert alert-danger" role="alert">
+    ban chua nhap tai khoan
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond registerPassword '==' 0}}
+  <div class="alert alert-danger" role="alert">
+    ban chua nhap mat khau
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond confirmPassword '==' 0}}
+  <div class="alert alert-danger" role="alert">
+    ban chua nhap lai mat khau
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond acceptRegisterUsername '==' 1}}
+  <div class="alert alert-danger" role="alert">
+    tai khoan nay da co nguoi su dung
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond acceptRegisterUsername '==' 2}}
+  <div class="alert alert-danger" role="alert">
+    tai khoan can it nhat 6 ki tu
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond acceptRegisterPassword '==' 2}}
+  <div class="alert alert-danger" role="alert">
+    mat khau can it nhat 6 ki tu
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond acceptConfirmPassword '==' 1}}
+  <div class="alert alert-danger" role="alert">
+    mat khau nhap lai khong chinh xac
+  </div>
+  {{/ifCond}}
+
+</div>
+
+<div class="sign-container {{#ifCond registerErr '==' true}}right-panel-active {{/ifCond}}" id="container2">
+  <div class="form-container sign-up-container">
+    <form action="/register" method="POST" class="sign-form">
+      <h1 class="sign-title">Đăng ký</h1>
+
+
+      <input class="sign-input form-control {{#ifCond registerUsername '==' 0}} is-invalid {{/ifCond}} {{#ifCond acceptRegisterUsername '==' 1}} is-invalid {{/ifCond}} {{#ifCond acceptRegisterUsername '==' 2}} is-invalid {{/ifCond}} {{#ifCond acceptRegisterUsername '==' 3}} is-valid {{/ifCond}}" {{#ifCond registerUsername '!=' 0}} value="{{../registerUsername}}" {{/ifCond}} name="registerUsername" type="text" placeholder="Username" />
+
+      <input class="sign-input form-control {{#ifCond registerPassword '==' 0}} is-invalid {{/ifCond}} {{#ifCond acceptRegisterPassword '==' 2}} is-invalid {{/ifCond}} {{#ifCond acceptRegisterPassword '==' 3}} is-valid {{/ifCond}}" {{#ifCond registerPassword '!=' 0}} value="{{../registerPassword}}" {{/ifCond}} name="registerPassword" type="password" placeholder="Password" />
+      <input class="sign-input form-control {{#ifCond confirmPassword '==' 0}} is-invalid {{/ifCond}} {{#ifCond acceptConfirmPassword '==' 1}} is-invalid {{/ifCond}}" {{#ifCond confirmPassword '!=' 0}} value="{{../confirmPassword}}" {{/ifCond}} name="confirmPassword" type="password" placeholder="Confirm Password" />
+      <button class="sign-submit" type="submit" id="sign-up__submit2">Đăng ký</button>
+      <span class="login-by-social-account">hoặc đăng nhập bằng:</span>
+      <div class="social-container">
+        <a href="/facebook/login" class="social social-facebook-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="/google/login" class="social social-google-icon"><i class="fab fa-google-plus-g"></i></a>
+
+      </div>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form action="/login" method="POST" class="sign-form">
+      <h1 class="sign-title">Đăng nhập</h1>
+
+
+      <input class="sign-input form-control {{#ifCond username '==' 0}} is-invalid {{/ifCond}} {{#ifCond wrongUsername '==' true}} is-invalid {{/ifCond}} {{#ifCond wrongUsername '==' false}} is-valid {{/ifCond}}" {{#ifCond username '!=' 0}} value="{{../username}}" {{/ifCond}} name="username" type="text" placeholder="Username" />
+      <input class="sign-input form-control {{#ifCond username '==' 0}} is-invalid {{/ifCond}} {{#ifCond wrongPassword '==' true}} is-invalid {{/ifCond}}" {{#ifCond password '!=' 0}} value="{{../password}}" {{/ifCond}}  name="password" type="password" placeholder="Password" />
+
+      <button class="sign-submit" type="submit" id="sign-in__submit2">Đăng nhập</button>
+      <span class="login-by-social-account">hoặc đăng nhập bằng:</span>
+      <div class="social-container">
+        <a href="/facebook/login" class="social social-facebook-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="/google/login" class="social social-google-icon"><i class="fab fa-google-plus-g"></i></a>
+
+      </div>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1 class="sign-title">Welcome Back!</h1>
+        <p class="overlay-description">Nếu đã có tài khoản thì đăng nhập ở đây</p>
+        <button class="ghost" id="signIn2">Đăng nhập</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1 class="sign-title">Chào Người Mới!</h1>
+        <p class="overlay-description">Nếu chưa có tài khoản thì đăng ký ở đây</p>
+        <button class="ghost" id="signUp2">Đăng ký</button>
+      </div>
+    </div>
+  </div>
+</div>
